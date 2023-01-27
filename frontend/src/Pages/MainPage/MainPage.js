@@ -8,6 +8,7 @@ export default function MainPage() {
     <main className={`${styles.main_container}`}>
       <h1>Strona główna</h1>
       <p>XD</p>
+      XD
     </main>
   );
 }
