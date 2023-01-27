@@ -9,6 +9,7 @@ import { useReducer } from "react";
 import { reducer, initialState } from "./reducer";
 import MainContext from "./context/MainContext";
 import Navigation from "./Layout/UI/Navigation/Navigation";
+import NotFoundPage from "./Pages/NotFoundPage/NotFoundPage";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={<MainPage />} />
         <Route path="/zaloguj" exact element={<Login />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
