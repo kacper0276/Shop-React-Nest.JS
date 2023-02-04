@@ -1,7 +1,8 @@
 .navigation {
-  width: 70%;
+  width: 100%;
   height: 100%;
   background: transparent;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,64 +48,96 @@
 }
 
 /* Products list in navigation */
-
-.navigation_element > p:hover,
-.navigation_element > ul:hover ~ p {
+.main_list {
   display: none;
 }
 
-.navigation_element > p:hover ~ ul,
-.navigation_element > ul:hover {
+.main_element_list:hover > .main_list,
+.main_list:hover {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  width: 200px;
+  height: 300px;
+  border: 1px solid black;
+}
+
+.main_list > li {
+  list-style-type: none;
+  margin-top: 30px;
+  width: 100%;
+}
+
+/* Mobile menu */
+
+.button_mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.button_mobile > span:first-child,
+.button_mobile > span:nth-child(2),
+.button_mobile > span:last-child {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   flex-direction: column;
-  flex-wrap: wrap;
-}
-
-.navigation_element > ul {
-  width: 100vw;
-  height: 50vh;
-  display: none;
-  margin-top: 300px;
-  margin-left: 17.3vw;
-  font-size: 1.2rem;
-  color: #fff;
-  background: #313031;
-}
-
-.navigation_element > ul:hover > li {
-  display: block;
-  position: relative;
-  color: white;
-  font-size: 1.2rem;
-  width: 15%;
-  height: 10%;
-  margin-top: 15px;
-  margin-left: 15px;
-  transition: transform 0.5s linear;
-}
-
-/* Max width to links */
-.navigation_element > ul:hover > li:hover > a {
-  display: block;
   width: 100%;
-  height: 100%;
+  height: 20%;
+  background: #000;
+  margin-top: 10%;
+  transition: transform 1s linear;
 }
 
-/* Animation underline element */
-.navigation_element > ul:hover > li::after {
-  content: "";
-  width: 100%;
-  height: 5px;
-  background: black;
-  position: absolute;
-  transform: scale(0);
-  transition: transform 0.3s linear;
-  bottom: 0;
-  left: 0;
-}
+@media only screen and (max-width: 1000px) {
+  .button_mobile {
+    display: block;
+    z-index: 3;
+  }
 
-.navigation_element > ul:hover > li:hover::after {
-  transform: scale(1);
+  /* Animation close/show menu button */
+  .button_mobile.active > span:first-child {
+    transform: translateY(-100px);
+  }
+
+  .button_mobile.active > span:last-child {
+    transform: translateY(-150%) rotate(45deg);
+  }
+
+  .button_mobile.active > span:nth-child(2) {
+    transform: rotate(-45deg);
+  }
+
+  .navigation_list {
+    transform: translateX(-300%);
+    transition: transform 2s linear;
+  }
+
+  .navigation_list.active {
+    transform: translateX(0);
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100%;
+  }
+
+  .main_element_list:hover > .main_list,
+  .main_list:hover {
+    justify-content: unset;
+    width: 300px;
+    height: 200px;
+    transform: translate(-100px, 50px);
+    overflow-y: scroll;
+  }
 }

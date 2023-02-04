@@ -1,10 +1,28 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navigation.module.css";
 
 export default function Navigation() {
+  const buttonMobile = useRef();
+  const navigationList = useRef();
+
+  const showMenu = () => {
+    buttonMobile.current.classList.toggle(`${styles.active}`);
+    navigationList.current.classList.toggle(`${styles.active}`);
+  };
+
   return (
     <nav className={`${styles.navigation}`}>
-      <ul className={`${styles.navigation_list}`}>
+      <div
+        className={`${styles.button_mobile}`}
+        ref={buttonMobile}
+        onClick={showMenu}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul className={`${styles.navigation_list}`} ref={navigationList}>
         <li className={`${styles.navigation_element}`}>
           <Link to="/" className={`${styles.navigation_link}`}>
             Strona główna
@@ -15,9 +33,11 @@ export default function Navigation() {
             Logowanie
           </Link>
         </li>
-        <li className={`${styles.navigation_element}`}>
+        <li
+          className={`${styles.navigation_element} ${styles.main_element_list}`}
+        >
           <p>Produkty</p>
-          <ul>
+          <ul className={`${styles.main_list}`}>
             <li>
               <Link
                 to="/produkty/wszystkie"
