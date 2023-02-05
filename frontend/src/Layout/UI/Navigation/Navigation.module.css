@@ -60,6 +60,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   overflow-y: auto;
+  background-color: rgb(73, 73, 73);
   width: 200px;
   height: 300px;
   border: 1px solid black;

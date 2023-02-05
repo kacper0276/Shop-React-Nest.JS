@@ -1,7 +1,10 @@
 .main_div {
-  width: 120px;
-  height: 120px;
+  width: 100vw;
+  height: 100vh;
   background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loader {
