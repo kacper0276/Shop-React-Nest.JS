@@ -1,3 +1,83 @@
 .main_container {
   min-height: 85vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back_arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Form div */
+.div_form {
+  position: relative;
+  width: 600px;
+  height: 500px;
+  border: 1px solid white;
+  overflow: hidden;
+}
+
+.login_form {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  inset: 10px;
+  z-index: 2;
+  background: rgb(110, 110, 110);
+}
+
+.login_form > input {
+  width: 50%;
+  height: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+/* Button login */
+.login_button {
+  width: 50%;
+  height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1000px) {
+  .main_container {
+    overflow-y: scroll;
+  }
+}
+
+/* Div form animation */
+
+.div_form::after {
+  content: "";
+  width: 50%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  background: black;
+  transform: rotate(30deg);
+  animation: border_animation 5s infinite linear;
+  z-index: 1;
+}
+
+@keyframes border_animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

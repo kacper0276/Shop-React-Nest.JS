@@ -16,7 +16,10 @@ function App() {
 
   const header = (
     <Header>
-      <Navigation />
+      <Routes>
+        <Route path="/zaloguj" element={<></>} />
+        <Route path="*" element={<Navigation />} />
+      </Routes>
     </Header>
   );
 
