@@ -1,21 +1,22 @@
-import useWebsiteTitle from "../../hooks/useWebisteTitle";
-import styles from "./Login.module.css";
-import { Link } from "react-router-dom";
 import { useState } from "react";
-import ForgotPassword from "../ForgotPassword/ForgotPassword";
+import { Link } from "react-router-dom";
+import styles from "./Register.module.css";
+import useWebsiteTitle from "../../hooks/useWebisteTitle";
 
-export default function Login() {
-  useWebsiteTitle("Zaloguj się");
-  const [showForgotPanel, setShowForgotPanel] = useState(false);
+export default function Register() {
+  useWebsiteTitle("Zarejestruj się");
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
+    password2: "",
   });
 
-  const loginFunction = async (e) => {
+  const registerFunction = async (e) => {
     e.preventDefault();
 
-    console.log(`email: ${loginData.email} password: ${loginData.password}`);
+    console.log(
+      `DATA: ${loginData.email} ${loginData.password} ${loginData.password2}`
+    );
   };
 
   return (
@@ -38,7 +39,7 @@ export default function Login() {
         </Link>
       </div>
       <div className={`${styles.div_form}`}>
-        <form className={`${styles.login_form}`}>
+        <form className={`${styles.register_form}`}>
           <input
             type="email"
             name="login"
@@ -56,28 +57,20 @@ export default function Login() {
               setLoginData({ ...loginData, password: e.target.value });
             }}
           />
-          <div className={`${styles.register_link}`}>
-            <p>
-              Nie masz jeszcze konta?{" "}
-              <Link to="/rejestracja">Zarejestruj się</Link>
-            </p>
-          </div>
-          <div
-            className={`${styles.forgot_password}`}
-            onClick={() => {
-              setShowForgotPanel(true);
+          <input
+            type="password"
+            name="password2"
+            placeholder="Powtórz hasło"
+            onChange={(e) => {
+              setLoginData({ ...loginData, password2: e.target.value });
             }}
+          />
+
+          <button
+            className={`${styles.register_button}`}
+            onClick={registerFunction}
           >
-            <p>Zapomniałeś hasła?</p>
-          </div>
-          {showForgotPanel ? (
-            <ForgotPassword
-              setShowForgotPanel={setShowForgotPanel}
-              showForgotPanel={showForgotPanel}
-            />
-          ) : null}
-          <button className={`${styles.login_button}`} onClick={loginFunction}>
-            Zaloguj się
+            Zarejestruj się
           </button>
         </form>
       </div>

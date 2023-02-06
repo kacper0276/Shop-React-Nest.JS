@@ -1,15 +1,18 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useReducer } from "react";
+import { reducer, initialState } from "./reducer";
 import Layout from "./Layout/Layout";
 import Header from "./Layout/Header/Header";
 import Footer from "./Layout/Footer/Footer";
 import MainPage from "./Pages/MainPage/MainPage";
 import Login from "./Pages/Login/Login";
-import { useReducer } from "react";
-import { reducer, initialState } from "./reducer";
 import MainContext from "./context/MainContext";
 import Navigation from "./Layout/UI/Navigation/Navigation";
 import NotFoundPage from "./Pages/NotFoundPage/NotFoundPage";
+import Register from "./Pages/Register/Register";
+import ForgotPasswordPage from "./Pages/ForgotPassword/ForgotPasswordPage/ForgotPasswordPage";
+import ConfirmCreateAccount from "./Pages/ConfirmCreateAccount/ConfirmCreateAccount";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -17,7 +20,10 @@ function App() {
   const header = (
     <Header>
       <Routes>
-        <Route path="/zaloguj" element={<></>} />
+        <Route path="/zaloguj" exact element={<></>} />
+        <Route path="/rejestracja" exact element={<></>} />
+        <Route path="/zmiana/:username" exact element={<></>} />
+        <Route path="/potwierdzenie/:username" exact element={<></>} />
         <Route path="*" element={<Navigation />} />
       </Routes>
     </Header>
@@ -28,6 +34,17 @@ function App() {
       <Routes>
         <Route path="/" exact element={<MainPage />} />
         <Route path="/zaloguj" exact element={<Login />} />
+        <Route path="/rejestracja" exact element={<Register />} />
+        <Route
+          path="/zmiana/:username"
+          exact
+          element={<ForgotPasswordPage />}
+        />
+        <Route
+          path="/potwierdzenie/:username"
+          exact
+          element={<ConfirmCreateAccount />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
