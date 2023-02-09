@@ -4,3 +4,7 @@
   --main-light-color: #fff;
   --main-dark-text: #000;
 }
+
+#root {
+  width: 100vw;
+}

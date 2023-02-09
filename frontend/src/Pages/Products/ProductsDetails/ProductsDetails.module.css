@@ -1,0 +1,48 @@
+.main_container {
+  min-height: 85vh;
+}
+
+/* Img div */
+.img_div {
+  height: 400px;
+  width: 70%;
+  float: left;
+}
+
+.img_div > img {
+  width: 100%;
+  height: 100%;
+}
+/* Order div */
+.order_div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 25%;
+  height: 400px;
+  float: left;
+}
+
+.order_div > input[type="number"] {
+  width: 10%;
+  border-radius: 5px;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.add_card_button {
+  width: 75%;
+  height: 100px;
+  background: whitesmoke;
+  border-radius: 5px;
+  box-shadow: 10px 15px 5px black;
+  cursor: pointer;
+}
+
+/* Description div */
+.description_product {
+  width: 100%;
+  height: 100px;
+  overflow-y: auto;
+  clear: both;
+}

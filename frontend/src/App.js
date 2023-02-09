@@ -13,6 +13,9 @@ import NotFoundPage from "./Pages/NotFoundPage/NotFoundPage";
 import Register from "./Pages/Register/Register";
 import ForgotPasswordPage from "./Pages/ForgotPassword/ForgotPasswordPage/ForgotPasswordPage";
 import ConfirmCreateAccount from "./Pages/ConfirmCreateAccount/ConfirmCreateAccount";
+import AllProducts from "./Pages/Products/AllProducts/AllProducts";
+import OtherProducts from "./Pages/Products/OtherProducts/OtherProducts";
+import ProductsDetails from "./Pages/Products/ProductsDetails/ProductsDetails";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -45,6 +48,9 @@ function App() {
           exact
           element={<ConfirmCreateAccount />}
         />
+        <Route path="/produkty/wszystkie" exact element={<AllProducts />} />
+        <Route path="/produkty/:type" exact element={<OtherProducts />} />
+        <Route path="/produkt/:id" exact element={<ProductsDetails />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

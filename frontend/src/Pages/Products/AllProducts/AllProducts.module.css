@@ -1,0 +1,14 @@
+.products_main_container {
+  min-height: 85vh;
+}
+
+.products_main_container > p {
+  display: block;
+}
+
+.products_container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
