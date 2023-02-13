@@ -16,6 +16,7 @@ import ConfirmCreateAccount from "./Pages/ConfirmCreateAccount/ConfirmCreateAcco
 import AllProducts from "./Pages/Products/AllProducts/AllProducts";
 import OtherProducts from "./Pages/Products/OtherProducts/OtherProducts";
 import ProductsDetails from "./Pages/Products/ProductsDetails/ProductsDetails";
+import ShoppingCard from "./Pages/ShoppingCard/ShoppingCard";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -27,6 +28,7 @@ function App() {
         <Route path="/rejestracja" exact element={<></>} />
         <Route path="/zmiana/:username" exact element={<></>} />
         <Route path="/potwierdzenie/:username" exact element={<></>} />
+        <Route path="/koszyk" exact element={<></>} />
         <Route path="*" element={<Navigation />} />
       </Routes>
     </Header>
@@ -51,6 +53,7 @@ function App() {
         <Route path="/produkty/wszystkie" exact element={<AllProducts />} />
         <Route path="/produkty/:type" exact element={<OtherProducts />} />
         <Route path="/produkt/:id" exact element={<ProductsDetails />} />
+        <Route path="/koszyk" exact element={<ShoppingCard />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

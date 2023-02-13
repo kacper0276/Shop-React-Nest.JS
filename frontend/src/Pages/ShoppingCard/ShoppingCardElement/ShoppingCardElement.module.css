@@ -1,0 +1,77 @@
+.main_container {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid black;
+}
+
+/* Img product */
+.img_product {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+.img_product > img {
+  height: 80%;
+  width: 80%;
+}
+
+/* Product name div */
+.name_product_div {
+  width: 20%;
+  height: 100%;
+  float: left;
+  display: flex;
+  align-items: center;
+  border-right: 2px solid silver;
+  box-sizing: border-box;
+}
+
+/* Product details */
+.product_price_details {
+  width: 60%;
+  height: 100%;
+  float: left;
+}
+
+/* price paragparh */
+.product_price_details > p:first-child {
+  display: flex;
+  width: 33%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+/* Quantity products */
+.product_price_details > p:nth-child(2) {
+  display: flex;
+  width: 33%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+/* Delete button */
+.delete_button_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34%;
+  height: 100%;
+  float: left;
+}
+
+.delete_button {
+  width: 70%;
+  height: 50%;
+  box-shadow: 10px 5px 10px black;
+  cursor: pointer;
+  background: whitesmoke;
+}

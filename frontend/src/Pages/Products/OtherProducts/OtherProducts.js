@@ -15,6 +15,14 @@ export default function OtherProducts() {
     setProducts([
       { id: 1, name: "TAK", price: 22, img: "product_1.JPG", alt: "OPIS" },
       { id: 2, name: "NIE", price: 100, img: "product_1.JPG", alt: "OPIS" },
+      { id: 1, name: "TAK #2", price: 1202, img: "product_1.JPG", alt: "OPIS" },
+      {
+        id: 2,
+        name: "NIE #2",
+        price: 100321,
+        img: "product_1.JPG",
+        alt: "OPIS",
+      },
     ]);
     setLoading(false);
   }, []);
@@ -28,7 +36,7 @@ export default function OtherProducts() {
             return <Product key={key} {...product} />;
           })
         ) : (
-          <LoadingIcon />
+          <LoadingIcon width={"50px"} height={"50px"} />
         )}
       </div>
     </div>

@@ -52,3 +52,11 @@
 .product_main_container:hover ~ .product_main_container {
   transform: translateX(15px);
 }
+
+@media only screen and (max-width: 1000px) {
+  .product_main_container {
+    width: 40%;
+    margin-bottom: 15px;
+    margin-right: 15px;
+  }
+}

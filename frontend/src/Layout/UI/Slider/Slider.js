@@ -18,10 +18,10 @@ export default function Slider(props) {
     const changePhoto = setInterval(() => {
       // eslint-disable-next-line
       i < image.length - 1 ? i++ : (i = 0);
-      slider.current.src = `./slider/transition.JPG`;
+      slider.current.src = `/slider/transition.JPG`;
 
       setTimeout(() => {
-        slider.current.src = `./slider/${image[i]}`;
+        slider.current.src = `/slider/${image[i]}`;
       }, 100);
     }, 5000);
 
@@ -30,19 +30,19 @@ export default function Slider(props) {
 
   const nextPhoto = () => {
     i < image.length - 1 ? i++ : (i = 0);
-    slider.current.src = `./slider/transition.JPG`;
+    slider.current.src = `/slider/transition.JPG`;
 
     setTimeout(() => {
-      slider.current.src = `./slider/${image[i]}`;
+      slider.current.src = `/slider/${image[i]}`;
     }, 100);
   };
 
   const previousPhoto = () => {
     i <= 0 ? (i = image.length - 1) : i--;
-    slider.current.src = `./slider/transition.JPG`;
+    slider.current.src = `/slider/transition.JPG`;
 
     setTimeout(() => {
-      slider.current.src = `./slider/${image[i]}`;
+      slider.current.src = `/slider/${image[i]}`;
     }, 100);
   };
 
@@ -65,7 +65,7 @@ export default function Slider(props) {
           </svg>
         </button>
       </div>
-      <img alt="img" src={`./slider/${image[0]}`} ref={slider} />
+      <img alt="img" src={`/slider/${image[0]}`} ref={slider} />
       <div className={`${styles.right_array}`}>
         <button onClick={nextPhoto}>
           <svg

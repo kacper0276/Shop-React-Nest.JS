@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import IconInNavigation from "../IconInNavigation/IconInNavigation";
 import styles from "./Navigation.module.css";
 
 export default function Navigation() {
@@ -63,6 +64,9 @@ export default function Navigation() {
               </Link>
             </li>
           </ul>
+        </li>
+        <li className={`${styles.navigation_element}`}>
+          <IconInNavigation />
         </li>
       </ul>
     </nav>

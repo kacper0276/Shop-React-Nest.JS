@@ -5,7 +5,7 @@ export default function LoadingIcon(props) {
     <div className={`${styles.main_div}`}>
       <div
         className={`${styles.loader}`}
-        style={{ width: props.width, height: props.height }}
+        style={{ width: props.width || "50px", height: props.height || "50px" }}
       ></div>
     </div>
   );

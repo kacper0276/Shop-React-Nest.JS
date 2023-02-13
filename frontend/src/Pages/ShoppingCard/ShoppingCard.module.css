@@ -1,0 +1,41 @@
+.main_container {
+  min-height: 85vh;
+  overflow-x: auto;
+}
+
+/* Scrollbar style */
+::-webkit-scrollbar {
+  border-radius: 10px;
+  width: 5px;
+  height: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Product list summary */
+.summary_product_list {
+  height: 85vh;
+  width: 75%;
+  float: left;
+}
+
+/* Summary price */
+.summary_price {
+  height: 85vh;
+  width: 25%;
+  float: left;
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+}
+
+/* Buy button */
+.buy_button {
+  border-radius: 5px;
+  box-shadow: 10px 10px 5px black;
+  width: 75%;
+  height: 75px;
+  cursor: pointer;
+}
