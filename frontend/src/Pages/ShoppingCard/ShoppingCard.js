@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useWebsiteTitle from "../../hooks/useWebisteTitle";
 import LoadingIcon from "../../Layout/UI/LoadingIcon/LoadingIcon";
 import styles from "./ShoppingCard.module.css";
@@ -82,7 +83,12 @@ export default function ShoppingCard() {
           <div className={`${styles.summary_price}`}>
             {productsPrice} zł
             <hr />
-            <button className={`${styles.buy_button}`}>Kupuję</button>
+            <Link
+              to={"/szczegolydostawy"}
+              state={{ productPrice: productsPrice, products: productsList }}
+            >
+              <button className={`${styles.buy_button}`}>Kupuję </button>
+            </Link>
           </div>
         </div>
       )}

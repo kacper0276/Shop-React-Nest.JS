@@ -17,6 +17,9 @@ import AllProducts from "./Pages/Products/AllProducts/AllProducts";
 import OtherProducts from "./Pages/Products/OtherProducts/OtherProducts";
 import ProductsDetails from "./Pages/Products/ProductsDetails/ProductsDetails";
 import ShoppingCard from "./Pages/ShoppingCard/ShoppingCard";
+import OrderSetting from "./Pages/Order/OrderSetting/OrderSetting";
+import UserPanel from "./Pages/UserPanel/UserPanel";
+import AuthenticatedRoute from "./hoc/AuthenticatedRoute";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -29,6 +32,7 @@ function App() {
         <Route path="/zmiana/:username" exact element={<></>} />
         <Route path="/potwierdzenie/:username" exact element={<></>} />
         <Route path="/koszyk" exact element={<></>} />
+        <Route path="/szczegolydostawy" exact element={<></>} />
         <Route path="*" element={<Navigation />} />
       </Routes>
     </Header>
@@ -54,6 +58,16 @@ function App() {
         <Route path="/produkty/:type" exact element={<OtherProducts />} />
         <Route path="/produkt/:id" exact element={<ProductsDetails />} />
         <Route path="/koszyk" exact element={<ShoppingCard />} />
+        <Route path="/szczegolydostawy" exact element={<OrderSetting />} />
+        <Route
+          path="/paneluzytkownika"
+          exact
+          element={
+            <AuthenticatedRoute>
+              <UserPanel />
+            </AuthenticatedRoute>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

@@ -5,13 +5,18 @@
 
 /* Scrollbar style */
 ::-webkit-scrollbar {
-  border-radius: 10px;
   width: 5px;
-  height: 20px;
 }
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424242;
+  height: 10px;
+  border-radius: 10px;
 }
 
 /* Product list summary */
