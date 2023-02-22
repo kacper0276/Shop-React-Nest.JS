@@ -1,0 +1,94 @@
+.main_container {
+  min-height: 85vh;
+}
+
+/* Side nav */
+.side_menu {
+  width: 0vw;
+  height: 85vh;
+  float: left;
+  transition: all 2s ease-in-out;
+  transform: scale(0);
+}
+
+.side_menu.active {
+  width: 25%;
+  transition: all 2s ease-in-out;
+  transform: scale(1);
+}
+
+/* Main panel */
+.main_panel {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  float: left;
+  transition: all 2s ease-in-out;
+}
+
+.main_panel.active {
+  width: 75%;
+  height: 85vh;
+  transition: all 2s ease-in-out;
+}
+
+/* Show menu button */
+.show_menu_button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  transition: transform 1.5s linear;
+}
+
+.show_menu_button.active {
+  transform: rotate(180deg);
+}
+
+/* Navigation */
+.navigation {
+  list-style-type: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+/* Navigation element */
+.navigation_element {
+  display: flex;
+  position: relative;
+  width: 50%;
+  height: 40px;
+  margin: 10px 25%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 1);
+  animation: pulseBorder 3s infinite;
+}
+
+.navigation_element > a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+/* Border animation */
+@keyframes pulseBorder {
+  0% {
+    border: 1px solid rgba(0, 0, 0, 1);
+  }
+  50% {
+    border: 1px solid rgba(0, 0, 0, 0);
+  }
+  100% {
+    border: 1px solid rgba(0, 0, 0, 1);
+  }
+}

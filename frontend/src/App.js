@@ -20,6 +20,8 @@ import ShoppingCard from "./Pages/ShoppingCard/ShoppingCard";
 import OrderSetting from "./Pages/Order/OrderSetting/OrderSetting";
 import UserPanel from "./Pages/UserPanel/UserPanel";
 import AuthenticatedRoute from "./hoc/AuthenticatedRoute";
+import ChangeUserDataPanel from "./Pages/UserPanel/ChangeUserDataPanel/ChangeUserDataPanel";
+import UserAuction from "./Pages/UserPanel/UserAuction/UserAuction";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -67,6 +69,16 @@ function App() {
               <UserPanel />
             </AuthenticatedRoute>
           }
+        />
+        <Route
+          path="/paneluzytkownika/zmiendane"
+          exact
+          element={<ChangeUserDataPanel />}
+        />
+        <Route
+          path="/paneluzytkownika/twojeaukcje"
+          exact
+          element={<UserAuction />}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

@@ -1,0 +1,62 @@
+.main_container {
+  min-height: 85vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Form div */
+.form_div {
+  position: relative;
+  width: 50%;
+  height: 85vh;
+  overflow: hidden;
+}
+
+/* Form */
+.form {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  position: relative;
+  z-index: 2;
+  inset: 10px;
+  background: #4b4b4b;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form_div::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 50%;
+  height: 200%;
+  transform: rotate(30deg);
+  background: rgb(61, 61, 61);
+  animation: rotateBorder 3s infinite linear;
+  z-index: 1;
+}
+
+/* Rotate animation */
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* form element */
+.form > .form_element {
+  width: 50%;
+  height: 20%;
+  margin: 20px;
+  background: yellow;
+}

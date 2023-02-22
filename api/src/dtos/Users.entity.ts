@@ -13,4 +13,7 @@ export class Users {
 
   @Column()
   isActive: boolean = false;
+
+  @Column()
+  linkExpired: string;
 }

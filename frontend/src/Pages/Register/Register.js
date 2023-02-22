@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Register.module.css";
 import useWebsiteTitle from "../../hooks/useWebisteTitle";
+import axios from "axios";
 
 export default function Register() {
   useWebsiteTitle("Zarejestruj się");
@@ -17,6 +18,12 @@ export default function Register() {
     console.log(
       `DATA: ${loginData.email} ${loginData.password} ${loginData.password2}`
     );
+
+    axios
+      .post(`http://localhost:3002/authenticated/register`, loginData)
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   return (

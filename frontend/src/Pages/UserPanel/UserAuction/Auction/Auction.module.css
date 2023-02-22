@@ -1,0 +1,52 @@
+.main_container {
+  width: 30%;
+  height: 200px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 10px 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Div img */
+.div_img {
+  width: 75%;
+  height: 100px;
+  background: yellow;
+}
+
+/* Div name */
+.div_name {
+  width: 100%;
+  height: 34px;
+  text-align: center;
+}
+
+/* Div price */
+.div_price {
+  width: 100%;
+  height: 33px;
+  text-align: center;
+}
+
+/* Div button */
+.div_button {
+  width: 100%;
+  height: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Button delete */
+.delete_button {
+  width: 50%;
+  height: 90%;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+  background: rgb(75, 75, 75);
+  box-shadow: 5px 0 10px black;
+}

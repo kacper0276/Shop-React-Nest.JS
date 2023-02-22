@@ -1,0 +1,63 @@
+.main_container {
+  min-height: 85vh;
+}
+
+/* Form div */
+.main_container > .form_order {
+  width: 75%;
+  height: 85vh;
+  float: left;
+}
+
+/* Adres delivery */
+.order_delivery_adres {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.order_delivery_adres > input {
+  width: 50%;
+  height: 20%;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+/* Type delivery  */
+.order_delivery_type {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.order_delivery_type > label {
+  padding: 15px;
+}
+
+/* Code delivery */
+.delivery_code {
+  width: 100%;
+  height: 10%;
+}
+
+/* Delivery result */
+.delivery_result {
+  float: left;
+  width: 25%;
+  height: 85vh;
+}
+
+.delivery_result > button {
+  margin-top: 10px;
+  width: 70%;
+  height: 50px;
+  background: #1b1b1b;
+  color: currentColor;
+  border: 1px solid black;
+  cursor: pointer;
+  box-shadow: 10px 5px 10px black;
+}
