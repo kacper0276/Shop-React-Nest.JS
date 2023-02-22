@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm/dist';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthenticatedModule } from './authenticated/authenticated.module';
+import Posts from './dtos/Posts.entity';
 import { Users } from './dtos/Users.entity';
 
 @Module({
@@ -14,7 +15,7 @@ import { Users } from './dtos/Users.entity';
       username: 'root',
       password: '',
       database: 'shop-nest-react',
-      entities: [Users],
+      entities: [Users, Posts],
       synchronize: true,
     }),
     AuthenticatedModule,

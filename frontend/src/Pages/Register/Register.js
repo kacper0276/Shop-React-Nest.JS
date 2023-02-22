@@ -3,27 +3,27 @@ import { Link } from "react-router-dom";
 import styles from "./Register.module.css";
 import useWebsiteTitle from "../../hooks/useWebisteTitle";
 import axios from "axios";
+import { api_url } from "../../App";
 
 export default function Register() {
   useWebsiteTitle("Zarejestruj się");
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
-    password2: "",
+    second_password: "",
   });
+  const [message, setMessage] = useState("");
 
   const registerFunction = async (e) => {
     e.preventDefault();
 
     console.log(
-      `DATA: ${loginData.email} ${loginData.password} ${loginData.password2}`
+      `DATA: ${loginData.email} ${loginData.password} ${loginData.second_password}`
     );
 
-    axios
-      .post(`http://localhost:3002/authenticated/register`, loginData)
-      .then((res) => {
-        console.log(res);
-      });
+    axios.post(`${api_url}/authenticated/register`, loginData).then((res) => {
+      setMessage(res.data.message);
+    });
   };
 
   return (
@@ -69,7 +69,7 @@ export default function Register() {
             name="password2"
             placeholder="Powtórz hasło"
             onChange={(e) => {
-              setLoginData({ ...loginData, password2: e.target.value });
+              setLoginData({ ...loginData, second_password: e.target.value });
             }}
           />
 
@@ -80,6 +80,17 @@ export default function Register() {
             Zarejestruj się
           </button>
         </form>
+        {message ? (
+          <div
+            className={
+              message === "Zarejestrowano, sprawdź maila by aktywować konto"
+                ? `${styles.good_message}`
+                : `${styles.error_message}`
+            }
+          >
+            {message}
+          </div>
+        ) : null}
       </div>
     </main>
   );

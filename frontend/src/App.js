@@ -23,6 +23,8 @@ import AuthenticatedRoute from "./hoc/AuthenticatedRoute";
 import ChangeUserDataPanel from "./Pages/UserPanel/ChangeUserDataPanel/ChangeUserDataPanel";
 import UserAuction from "./Pages/UserPanel/UserAuction/UserAuction";
 
+export const api_url = `http://localhost:3002/api`;
+
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 

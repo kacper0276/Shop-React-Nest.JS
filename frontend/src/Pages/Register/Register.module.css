@@ -83,3 +83,38 @@
     transform: rotate(360deg);
   }
 }
+
+/* After register message */
+.good_message {
+  z-index: 5;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: translateY(300px);
+  margin: auto;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  background: green;
+}
+
+.error_message {
+  z-index: 5;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: translateY(300px);
+  margin: auto;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  background: red;
+}

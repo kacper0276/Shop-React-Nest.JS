@@ -3,6 +3,8 @@ import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ForgotPassword from "../ForgotPassword/ForgotPassword";
+import axios from "axios";
+import { api_url } from "../../App";
 
 export default function Login() {
   useWebsiteTitle("Zaloguj się");
@@ -16,6 +18,10 @@ export default function Login() {
     e.preventDefault();
 
     console.log(`email: ${loginData.email} password: ${loginData.password}`);
+
+    axios.post(`${api_url}/authenticated/login`, loginData).then((res) => {
+      console.log(res);
+    });
   };
 
   return (

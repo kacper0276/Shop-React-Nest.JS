@@ -1,5 +1,5 @@
 export type registerType = {
-  login: string;
+  email: string;
   password: string;
   second_password: string;
 };
