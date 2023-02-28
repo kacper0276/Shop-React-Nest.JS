@@ -11,7 +11,11 @@ export const reducer = (state, action) => {
 
     case "change-login-status":
       const newLoginStatus = state.userLoggin === false ? true : false;
-      return { ...state, userLoggin: newLoginStatus };
+      return {
+        ...state,
+        userLoggin: newLoginStatus,
+        userStatus: action.userType,
+      };
 
     default:
       throw new Error(`Nie ma takiej akcji ${action.type}`);
@@ -20,5 +24,6 @@ export const reducer = (state, action) => {
 
 export const initialState = {
   theme: `${styles.dark_theme}`,
-  userLoggin: true,
+  userLoggin: Boolean(window.localStorage.getItem("username")),
+  userStatus: "",
 };

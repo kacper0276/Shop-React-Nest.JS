@@ -49,6 +49,7 @@ export class AuthenticatedService {
       email: email,
       password: hashPassword,
       linkExpired: linkExpiredTime,
+      userType: 'user',
     };
 
     await this.usersRepository.save(registerUser);
@@ -60,5 +61,27 @@ export class AuthenticatedService {
       { password } = loginData;
 
     console.log(`email: ${email} password: ${password}`);
+
+    const userExist = await this.usersRepository.findBy({
+      email: email,
+    });
+
+    if (userExist.length > 0) {
+      const comparePassword = await bcrypt.compare(
+        password,
+        userExist[0].password,
+      );
+
+      if (comparePassword === true && userExist[0].isActive === true) {
+        return {
+          username: userExist[0].email,
+          userType: userExist[0].userType,
+        };
+      } else {
+        return { message: 'Błędny email lub hasło' };
+      }
+    } else {
+      return { message: 'Błędny email lub hasło' };
+    }
   }
 }

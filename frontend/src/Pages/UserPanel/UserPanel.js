@@ -1,10 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import MainContext from "../../context/MainContext";
 import useWebsiteTitle from "../../hooks/useWebisteTitle";
 import styles from "./UserPanel.module.css";
 
 export default function UserPanel() {
   useWebsiteTitle("Panel użytkownika");
+  const context = useContext(MainContext);
   const sideMenu = useRef();
   const mainPanel = useRef();
   const showMenuButton = useRef();
@@ -32,6 +34,20 @@ export default function UserPanel() {
           <li className={`${styles.navigation_element}`}>
             <Link to={"/paneluzytkownika/twojeaukcje"}>Twoje aukcje</Link>
           </li>
+          {context.state.userStatus === "admin" ? (
+            <>
+              <li className={`${styles.navigation_element}`}>
+                <Link to={"/paneluzytkownika/typyaukcji"}>
+                  Dodaj typ aukcji
+                </Link>
+              </li>
+              <li className={`${styles.navigation_element}`}>
+                <Link to={"/paneluzytkownika/edytujuzytkownikow"}>
+                  Edytuj użytkowników
+                </Link>
+              </li>
+            </>
+          ) : null}
         </ul>
       </div>
       <div className={`${styles.main_panel}`} ref={mainPanel}>

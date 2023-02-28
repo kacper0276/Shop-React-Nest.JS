@@ -1,18 +1,22 @@
 import useWebsiteTitle from "../../hooks/useWebisteTitle";
 import styles from "./Login.module.css";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import ForgotPassword from "../ForgotPassword/ForgotPassword";
 import axios from "axios";
 import { api_url } from "../../App";
+import MainContext from "../../context/MainContext";
 
 export default function Login() {
   useWebsiteTitle("Zaloguj się");
+  const context = useContext(MainContext);
+  const navigate = useNavigate();
   const [showForgotPanel, setShowForgotPanel] = useState(false);
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+  const [message, setMessage] = useState("");
 
   const loginFunction = async (e) => {
     e.preventDefault();
@@ -21,6 +25,17 @@ export default function Login() {
 
     axios.post(`${api_url}/authenticated/login`, loginData).then((res) => {
       console.log(res);
+      if (res.data?.message) {
+        setMessage(res.data.message);
+      } else {
+        window.localStorage.setItem("username", res.data.username);
+        context.dispatch({
+          type: "change-login-status",
+          userType: res.data.userType,
+        });
+
+        navigate("/");
+      }
     });
   };
 
@@ -86,6 +101,9 @@ export default function Login() {
             Zaloguj się
           </button>
         </form>
+        {message ? (
+          <div className={`${styles.error_message}`}>{message}</div>
+        ) : null}
       </div>
     </main>
   );

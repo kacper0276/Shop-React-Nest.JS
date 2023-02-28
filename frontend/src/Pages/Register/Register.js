@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
 import useWebsiteTitle from "../../hooks/useWebisteTitle";
 import axios from "axios";
@@ -7,6 +7,7 @@ import { api_url } from "../../App";
 
 export default function Register() {
   useWebsiteTitle("Zarejestruj się");
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -23,6 +24,14 @@ export default function Register() {
 
     axios.post(`${api_url}/authenticated/register`, loginData).then((res) => {
       setMessage(res.data.message);
+
+      if (
+        res.data.message === "Zarejestrowano, sprawdź maila by aktywować konto"
+      ) {
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
+      }
     });
   };
 

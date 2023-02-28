@@ -3,8 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm/dist';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthenticatedModule } from './authenticated/authenticated.module';
-import Posts from './dtos/Posts.entity';
+import Orders from './dtos/Orders.entity';
+import Auction from './dtos/Auction.entity';
+import Products from './dtos/ProductsType.entity';
 import { Users } from './dtos/Users.entity';
+import UsersPanelModule from './usersPanel/usersPanel.module';
 
 @Module({
   imports: [
@@ -15,10 +18,11 @@ import { Users } from './dtos/Users.entity';
       username: 'root',
       password: '',
       database: 'shop-nest-react',
-      entities: [Users, Posts],
+      entities: [Users, Auction, Orders, Products],
       synchronize: true,
     }),
     AuthenticatedModule,
+    UsersPanelModule,
   ],
   controllers: [AppController],
   providers: [AppService],

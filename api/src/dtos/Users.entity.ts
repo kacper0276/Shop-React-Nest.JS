@@ -16,4 +16,7 @@ export class Users {
 
   @Column()
   linkExpired: string;
+
+  @Column()
+  userType: string;
 }

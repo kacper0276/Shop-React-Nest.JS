@@ -19,9 +19,10 @@ import ProductsDetails from "./Pages/Products/ProductsDetails/ProductsDetails";
 import ShoppingCard from "./Pages/ShoppingCard/ShoppingCard";
 import OrderSetting from "./Pages/Order/OrderSetting/OrderSetting";
 import UserPanel from "./Pages/UserPanel/UserPanel";
-import AuthenticatedRoute from "./hoc/AuthenticatedRoute";
 import ChangeUserDataPanel from "./Pages/UserPanel/ChangeUserDataPanel/ChangeUserDataPanel";
 import UserAuction from "./Pages/UserPanel/UserAuction/UserAuction";
+import AuthenticatedRoute from "./hoc/AuthenticatedRoute";
+import AuthenticatedAdminRoute from "./hoc/AuthenticatedAdminRoute";
 
 export const api_url = `http://localhost:3002/api`;
 
@@ -81,6 +82,15 @@ function App() {
           path="/paneluzytkownika/twojeaukcje"
           exact
           element={<UserAuction />}
+        />
+        <Route
+          path="/paneluzytkownika/edytujuzytkownikow"
+          exact
+          element={
+            <AuthenticatedAdminRoute>
+              <h1>Test panelu admina</h1>
+            </AuthenticatedAdminRoute>
+          }
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
