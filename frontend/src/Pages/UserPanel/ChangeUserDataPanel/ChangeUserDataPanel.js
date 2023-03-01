@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
+import { api_url } from "../../../App";
 import useWebsiteTitle from "../../../hooks/useWebisteTitle";
 import styles from "./ChangeUserDataPanel.module.css";
 
@@ -8,14 +10,24 @@ export default function ChangeUserDataPanel() {
   );
 
   const [userData, setUserData] = useState({
-    email: `${window.localStorage.getItem("username")}`,
+    email: ``,
     password: "",
   });
+  const [message, setMessage] = useState("");
 
   const sendUserData = (e) => {
     e.preventDefault();
 
-    console.log(userData);
+    axios
+      .post(
+        `${api_url}/userspanel/edituserdata/${window.localStorage.getItem(
+          "username"
+        )}`,
+        userData
+      )
+      .then((res) => {
+        setMessage(res.data.message);
+      });
   };
 
   return (
@@ -24,7 +36,14 @@ export default function ChangeUserDataPanel() {
         <form method="POST" className={`${styles.form}`}>
           <label className={`${styles.form_element}`}>
             <span>Nazwa użytkownika</span>
-            <input type="email" name="email" value={`${userData.email}`} />
+            <input
+              type="email"
+              name="email"
+              defaultValue={`${window.localStorage.getItem("username")}`}
+              onChange={(e) => {
+                setUserData({ ...userData, email: e.target.value });
+              }}
+            />
           </label>
           <label className={`${styles.form_element}`}>
             <span>Hasło</span>
@@ -36,8 +55,26 @@ export default function ChangeUserDataPanel() {
               }}
             />
           </label>
-          <button onClick={sendUserData}>Zmień dane</button>
+          <button
+            className={`${styles.send_data_button}`}
+            onClick={sendUserData}
+          >
+            Zmień dane
+          </button>
         </form>
+        {message ? (
+          <>
+            <div
+              className={
+                message.includes("Błąd")
+                  ? `${styles.error_message}`
+                  : `${styles.good_message}`
+              }
+            >
+              {message}
+            </div>
+          </>
+        ) : null}
       </div>
     </div>
   );

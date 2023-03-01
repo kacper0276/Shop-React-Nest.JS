@@ -10,7 +10,7 @@ export default function ForgotPassword(props) {
   const sendEmail = async (e) => {
     e.preventDefault();
 
-    console.log(`email: ${email}`);
+    console.log(email);
 
     setShowMessage(true);
   };

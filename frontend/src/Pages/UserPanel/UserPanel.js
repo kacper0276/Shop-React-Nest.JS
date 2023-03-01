@@ -37,13 +37,16 @@ export default function UserPanel() {
           {context.state.userStatus === "admin" ? (
             <>
               <li className={`${styles.navigation_element}`}>
-                <Link to={"/paneluzytkownika/typyaukcji"}>
-                  Dodaj typ aukcji
+                <Link to={"/paneladmina/typyaukcji"}>Dodaj typ aukcji</Link>
+              </li>
+              <li className={`${styles.navigation_element}`}>
+                <Link to={"/paneladmina/edytujuzytkownikow"}>
+                  Edytuj użytkowników
                 </Link>
               </li>
               <li className={`${styles.navigation_element}`}>
-                <Link to={"/paneluzytkownika/edytujuzytkownikow"}>
-                  Edytuj użytkowników
+                <Link to={"/paneladmina/dodajkodrabatowy"}>
+                  Dodaj kod rabatowy
                 </Link>
               </li>
             </>

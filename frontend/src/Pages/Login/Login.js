@@ -21,10 +21,7 @@ export default function Login() {
   const loginFunction = async (e) => {
     e.preventDefault();
 
-    console.log(`email: ${loginData.email} password: ${loginData.password}`);
-
     axios.post(`${api_url}/authenticated/login`, loginData).then((res) => {
-      console.log(res);
       if (res.data?.message) {
         setMessage(res.data.message);
       } else {

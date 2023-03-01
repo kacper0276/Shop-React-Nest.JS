@@ -37,8 +37,6 @@ export default function ForgotPasswordPage() {
 
   const changePasswordFunction = (e) => {
     e.preventDefault();
-
-    console.log(changePasswordData);
   };
 
   return (

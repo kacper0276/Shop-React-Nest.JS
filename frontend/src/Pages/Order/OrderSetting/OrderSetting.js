@@ -56,8 +56,6 @@ export default function OrderSetting() {
 
   const sendOrder = (e) => {
     e.preventDefault();
-
-    console.log(orderData);
   };
 
   useEffect(() => {

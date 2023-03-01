@@ -19,4 +19,7 @@ export class Users {
 
   @Column()
   userType: string;
+
+  @Column()
+  userImg: string;
 }

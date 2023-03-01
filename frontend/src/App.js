@@ -23,6 +23,7 @@ import ChangeUserDataPanel from "./Pages/UserPanel/ChangeUserDataPanel/ChangeUse
 import UserAuction from "./Pages/UserPanel/UserAuction/UserAuction";
 import AuthenticatedRoute from "./hoc/AuthenticatedRoute";
 import AuthenticatedAdminRoute from "./hoc/AuthenticatedAdminRoute";
+import AddRabatCode from "./Pages/AdminPanel/AddRabatCode/AddRabatCode";
 
 export const api_url = `http://localhost:3002/api`;
 
@@ -76,19 +77,36 @@ function App() {
         <Route
           path="/paneluzytkownika/zmiendane"
           exact
-          element={<ChangeUserDataPanel />}
+          element={
+            <AuthenticatedRoute>
+              <ChangeUserDataPanel />
+            </AuthenticatedRoute>
+          }
         />
         <Route
           path="/paneluzytkownika/twojeaukcje"
           exact
-          element={<UserAuction />}
+          element={
+            <AuthenticatedRoute>
+              <UserAuction />
+            </AuthenticatedRoute>
+          }
         />
         <Route
-          path="/paneluzytkownika/edytujuzytkownikow"
+          path="/paneladmina/edytujuzytkownikow"
           exact
           element={
             <AuthenticatedAdminRoute>
               <h1>Test panelu admina</h1>
+            </AuthenticatedAdminRoute>
+          }
+        />
+        <Route
+          path="/paneladmina/dodajkodrabatowy"
+          exact
+          element={
+            <AuthenticatedAdminRoute>
+              <AddRabatCode />
             </AuthenticatedAdminRoute>
           }
         />

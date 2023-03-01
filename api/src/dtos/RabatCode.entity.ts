@@ -1,10 +1,16 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export default class ProductsType {
+export class RabatCode {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  code: string;
+
+  @Column()
+  codeExpired: Date;
+
+  @Column()
+  valueRabat: number;
 }

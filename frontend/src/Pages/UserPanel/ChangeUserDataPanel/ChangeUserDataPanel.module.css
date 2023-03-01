@@ -58,5 +58,59 @@
   width: 50%;
   height: 20%;
   margin: 20px;
-  background: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form_element > input {
+  width: 70%;
+  border-radius: 5px;
+}
+
+/* Button */
+.send_data_button {
+  padding: 20px 50px;
+  cursor: pointer;
+  color: currentColor;
+  border-radius: 5px;
+  background: #333333;
+  border: none;
+  box-shadow: 3px 5px 10px #000;
+}
+
+/* Message */
+.good_message {
+  z-index: 5;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: translateY(400px);
+  margin: auto;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  background: green;
+}
+
+.error_message {
+  z-index: 5;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: translateY(400px);
+  margin: auto;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  background: red;
 }

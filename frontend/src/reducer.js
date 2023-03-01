@@ -11,6 +11,7 @@ export const reducer = (state, action) => {
 
     case "change-login-status":
       const newLoginStatus = state.userLoggin === false ? true : false;
+      window.localStorage.setItem("userstatus", action.userType);
       return {
         ...state,
         userLoggin: newLoginStatus,
@@ -25,5 +26,5 @@ export const reducer = (state, action) => {
 export const initialState = {
   theme: `${styles.dark_theme}`,
   userLoggin: Boolean(window.localStorage.getItem("username")),
-  userStatus: "",
+  userStatus: window.localStorage.getItem("userstatus"),
 };
