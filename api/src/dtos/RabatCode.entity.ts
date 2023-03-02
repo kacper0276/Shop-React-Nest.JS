@@ -9,7 +9,7 @@ export class RabatCode {
   code: string;
 
   @Column()
-  codeExpired: Date;
+  codeExpired: string;
 
   @Column()
   valueRabat: number;

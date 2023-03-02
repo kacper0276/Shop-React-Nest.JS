@@ -39,9 +39,11 @@ export class AdminPanelService {
     const actualDate = `${date.getFullYear()}-${month}-${day} ${date.getHours()}:${date.getMinutes()}`;
 
     if (actualDate > JSON.parse(dateAfterModify)) {
-      return { message: 'Nie dodawaj daty, która minęła' };
-    } else if (rabatValue > 100 && rabatValue < 1) {
-      return { message: 'Wartość musi być mniejsza od 100 i większa od 0' };
+      return { message: 'Błąd! Nie dodawaj daty, która minęła' };
+    } else if (rabatValue > 100 || rabatValue < 1) {
+      return {
+        message: 'Błąd! Wartość musi być mniejsza od 100 i większa od 0',
+      };
     } else {
       const objectReadyToInsert = {
         code: rabatCode,
@@ -52,5 +54,11 @@ export class AdminPanelService {
       await this.rabatCodeRepository.save(objectReadyToInsert);
       return { message: 'Dodano rabat do bazy danych' };
     }
+  }
+
+  async getAllRabatCode() {
+    const allCodes = await this.rabatCodeRepository.find();
+
+    return { allCodes: allCodes };
   }
 }

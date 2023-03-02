@@ -1,82 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./AddRabatCode.module.css";
 import useWebsiteTitle from "../../../hooks/useWebisteTitle";
 import axios from "axios";
 import { api_url } from "../../../App";
+import LoadingIcon from "../../../Layout/UI/LoadingIcon/LoadingIcon";
+import TableAllRabatCodes from "./TableAllRabatCodes/TableAllRabatCodes";
+import AddCodeForm from "./AddCodeForm/AddCodeForm";
 
 export default function AddRabatCode() {
   useWebsiteTitle("Dodaj kod rabatowy");
-  const [data, setData] = useState({
-    rabatCode: "",
-    codeExpiredDate: null,
-    rabatValue: 0,
-  });
-  const [message, setMessage] = useState("");
 
-  const addRabatCode = async (e) => {
-    e.preventDefault();
+  const [loading, setLoading] = useState(true);
+  const [allCodeList, setAllCodeList] = useState([]);
 
-    console.log(data);
-    axios
-      .post(`${api_url}/adminpanel/addrabatcode`, data)
-      .then((res) => console.log(res));
+  const showScreenEdit = (value) => {
+    console.log(value);
+    // Pokazujesz ekran jak fetchujesz wszystkie dane tego id
   };
+
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      await axios.get(`${api_url}/adminpanel/getallrabatcode`).then((res) => {
+        setAllCodeList(res.data.allCodes);
+        setLoading(false);
+      });
+    };
+
+    fetchAllProducts();
+  }, []);
 
   return (
     <div className={`${styles.main_container}`}>
-      <form method="POST" className={`${styles.form_panel}`}>
-        <label>
-          <span>Jaki kod</span>
-          <input
-            type={"text"}
-            name={"rabat"}
-            onChange={(e) => {
-              setData({ ...data, rabatCode: e.target.value });
-            }}
+      <AddCodeForm />
+      <div className={`${styles.all_codes_list}`}>
+        {loading ? (
+          <LoadingIcon />
+        ) : (
+          <TableAllRabatCodes
+            allCodeList={allCodeList}
+            showScreenEdit={showScreenEdit}
           />
-        </label>
-        <label>
-          <span>Do kiedy ważny kod</span>
-          <input
-            type={"datetime-local"}
-            onChange={(e) => {
-              setData({ ...data, codeExpiredDate: e.target.value });
-            }}
-          />
-        </label>
-        <label>
-          <span>Ile % rabatu</span>
-          <input
-            type={"number"}
-            name="Percent"
-            min={1}
-            max={100}
-            onChange={(e) => {
-              setData({ ...data, rabatValue: e.target.value });
-            }}
-          />
-        </label>
-
-        <button
-          className={`${styles.send_button}`}
-          onClick={(e) => {
-            addRabatCode(e);
-          }}
-        >
-          Zapisz kod rabatowy
-        </button>
-      </form>
-      {message ? (
-        <div
-          className={
-            message.includes("Błąd")
-              ? `${styles.error_message}`
-              : `${styles.good_message}`
-          }
-        >
-          {message}
-        </div>
-      ) : null}
+        )}
+      </div>
     </div>
   );
 }

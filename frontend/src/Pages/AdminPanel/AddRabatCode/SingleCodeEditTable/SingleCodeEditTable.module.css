@@ -1,0 +1,15 @@
+.border_table {
+  border: 1px solid rgb(65, 65, 65);
+}
+
+/* TR widht set */
+.border_table:first-child,
+.border_table:nth-child(2),
+.border_table:last-child {
+  width: 33%;
+  text-align: center;
+}
+
+.border_table:first-child {
+  cursor: pointer;
+}

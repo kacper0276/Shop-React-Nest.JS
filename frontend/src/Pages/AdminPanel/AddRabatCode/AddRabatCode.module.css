@@ -2,73 +2,9 @@
   min-height: 85vh;
 }
 
-/* Send button */
-.send_button {
-  padding: 15px;
-  border: none;
-  outline: none;
-  border-radius: 3px;
-  cursor: pointer;
-  background: rgb(71, 71, 71);
-}
-
-/* Form */
-.form_panel {
-  width: 100%;
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-/* Input in form panel */
-.form_panel > label {
-  width: 30%;
-  height: 100px;
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.form_panel input {
-  width: 100%;
-  margin: 10px 0;
-  border-radius: 6px;
-}
-
-/* Message */
-.good_message {
-  z-index: 5;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  transform: translateY(300px);
-  margin: auto;
-  width: 200px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 7px;
-  background: green;
-}
-
-.error_message {
-  z-index: 5;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  transform: translateY(300px);
-  margin: auto;
-  width: 200px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 7px;
-  background: red;
+/* ALL codes list div */
+.all_codes_list {
+  width: 50%;
+  height: 85vh;
+  overflow-y: auto;
 }
