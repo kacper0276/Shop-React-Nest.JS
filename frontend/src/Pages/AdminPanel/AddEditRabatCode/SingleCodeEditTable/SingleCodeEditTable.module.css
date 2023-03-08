@@ -13,3 +13,12 @@
 .border_table:first-child {
   cursor: pointer;
 }
+
+/* Delete button */
+.delete_button {
+  width: 70%;
+  height: 100%;
+  background: rgb(187, 21, 21);
+  border: none;
+  cursor: pointer;
+}

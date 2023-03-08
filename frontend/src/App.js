@@ -23,7 +23,8 @@ import ChangeUserDataPanel from "./Pages/UserPanel/ChangeUserDataPanel/ChangeUse
 import UserAuction from "./Pages/UserPanel/UserAuction/UserAuction";
 import AuthenticatedRoute from "./hoc/AuthenticatedRoute";
 import AuthenticatedAdminRoute from "./hoc/AuthenticatedAdminRoute";
-import AddRabatCode from "./Pages/AdminPanel/AddRabatCode/AddRabatCode";
+import AddRabatCode from "./Pages/AdminPanel/AddEditRabatCode/AddRabatCode";
+import EditUsersData from "./Pages/AdminPanel/EditUsersData/EditUsersData";
 
 export const api_url = `http://localhost:3002/api`;
 
@@ -97,7 +98,7 @@ function App() {
           exact
           element={
             <AuthenticatedAdminRoute>
-              <h1>Test panelu admina</h1>
+              <EditUsersData />
             </AuthenticatedAdminRoute>
           }
         />

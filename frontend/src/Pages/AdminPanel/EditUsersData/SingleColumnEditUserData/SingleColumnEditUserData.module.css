@@ -1,0 +1,17 @@
+/* Delete button */
+.delete_button {
+  width: 100%;
+  height: 100%;
+  background: rgb(187, 21, 21);
+  border: none;
+  cursor: pointer;
+}
+
+/* Save changes button */
+.save_changes_button {
+  width: 100%;
+  height: 100%;
+  background: rgb(187, 176, 21);
+  border: none;
+  cursor: pointer;
+}

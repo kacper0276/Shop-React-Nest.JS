@@ -3,7 +3,7 @@ import styles from "./AddCodeForm.module.css";
 import axios from "axios";
 import { api_url } from "../../../../App";
 
-export default function AddCodeForm() {
+export default function AddCodeForm(props) {
   const [data, setData] = useState({
     rabatCode: "",
     codeExpiredDate: null,
@@ -16,6 +16,7 @@ export default function AddCodeForm() {
 
     axios.post(`${api_url}/adminpanel/addrabatcode`, data).then((res) => {
       setMessage(res.data.message);
+      props.fetchAllProducts();
     });
   };
 
