@@ -1,0 +1,15 @@
+.main_table {
+  width: 50%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.main_table > thead {
+  width: 100%;
+}
+
+.main_table th {
+  width: 50%;
+}

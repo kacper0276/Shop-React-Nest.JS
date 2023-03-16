@@ -10,21 +10,40 @@ export default function SingleColumnEditUserData(props) {
     isActive: null,
     userType: null,
   });
+  const [message, setMessage] = useState("");
 
   const changeUserData = async (e) => {
     e.preventDefault();
-
-    console.log(data);
 
     axios
       .post(`${api_url}/adminpanel/changeuserdata/${props.id}`, data)
       .then((res) => {
         console.log(res);
+        if (!res.data.message.includes("Błąd")) {
+          window.location.reload();
+        } else {
+          setMessage(res.data.message);
+        }
+      });
+  };
+
+  const deleteUser = async (e) => {
+    e.preventDefault();
+
+    axios
+      .post(`${api_url}/adminpanel/deleteuser/${props.id}`)
+      .then((res) => {
+        if (res.data.message === "Usunięto użytkownika") {
+          window.location.reload();
+        }
+      })
+      .catch((err) => {
+        throw new Error(err);
       });
   };
 
   return (
-    <tbody>
+    <tbody className={`${styles.tbody}`}>
       <tr>
         <td>{props.id}</td>
         <td>
@@ -63,13 +82,10 @@ export default function SingleColumnEditUserData(props) {
             onChange={(e) => {
               setData({ ...data, userType: e.target.value });
             }}
+            defaultValue={props.userType}
           >
-            <option value={"user"} selected={props.userType === "user"}>
-              Użytkownik
-            </option>
-            <option value={"admin"} selected={props.userType === "admin"}>
-              Admin
-            </option>
+            <option value={"user"}>Użytkownik</option>
+            <option value={"admin"}>Admin</option>
           </select>
         </td>
         <td>
@@ -81,9 +97,25 @@ export default function SingleColumnEditUserData(props) {
           </button>
         </td>
         <td>
-          <button className={`${styles.delete_button}`}>Usuń użytownika</button>
+          <button className={`${styles.delete_button}`} onClick={deleteUser}>
+            Usuń użytownika
+          </button>
         </td>
       </tr>
+      {message ? (
+        <div
+          className={`${styles.error_container}`}
+          onClick={() => {
+            setMessage("");
+          }}
+        >
+          <div className={`${styles.close_button}`}>
+            <span></span>
+            <span></span>
+          </div>
+          {message}
+        </div>
+      ) : null}
     </tbody>
   );
 }

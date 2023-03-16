@@ -1,5 +1,6 @@
 .main_container {
   min-height: 85vh;
+  position: relative;
 }
 
 /* ALL codes list div */
@@ -8,4 +9,15 @@
   height: 85vh;
   overflow-y: auto;
   position: relative;
+}
+
+.back_arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(30px, 50px);
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 5;
 }

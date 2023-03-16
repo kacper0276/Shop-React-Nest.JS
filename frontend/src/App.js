@@ -25,6 +25,7 @@ import AuthenticatedRoute from "./hoc/AuthenticatedRoute";
 import AuthenticatedAdminRoute from "./hoc/AuthenticatedAdminRoute";
 import AddRabatCode from "./Pages/AdminPanel/AddEditRabatCode/AddRabatCode";
 import EditUsersData from "./Pages/AdminPanel/EditUsersData/EditUsersData";
+import AddAuctionType from "./Pages/AdminPanel/AddAuctionType/AddAuctionType";
 
 export const api_url = `http://localhost:3002/api`;
 
@@ -108,6 +109,15 @@ function App() {
           element={
             <AuthenticatedAdminRoute>
               <AddRabatCode />
+            </AuthenticatedAdminRoute>
+          }
+        />
+        <Route
+          path="/paneladmina/typyaukcji"
+          exact
+          element={
+            <AuthenticatedAdminRoute>
+              <AddAuctionType />
             </AuthenticatedAdminRoute>
           }
         />

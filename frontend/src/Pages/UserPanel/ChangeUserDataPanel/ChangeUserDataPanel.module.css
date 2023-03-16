@@ -80,6 +80,18 @@
   box-shadow: 3px 5px 10px #000;
 }
 
+/* Back arrow */
+.back_arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(30px, 50px);
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 5;
+}
+
 /* Message */
 .good_message {
   z-index: 5;

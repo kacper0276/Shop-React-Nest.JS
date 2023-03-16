@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  position: relative;
 }
 
 /* Table */
@@ -11,4 +12,16 @@
   width: 75%;
   height: 100%;
   overflow-y: auto;
+}
+
+/* Back arrow */
+.back_arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(30px, 50px);
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 5;
 }

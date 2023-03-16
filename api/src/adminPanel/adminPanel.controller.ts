@@ -44,4 +44,11 @@ export class AdminPanelController {
   async changeUserData(@Body() data: loginType, @Param('id') id: number) {
     return await this.adminPanelService.changeUserData(data, id);
   }
+
+  @Post('/deleteuser/:id')
+  async deleteUser(@Param('id') id: number) {
+    return await this.adminPanelService.deleteUser(id);
+  }
+
+  // Auaction panel
 }

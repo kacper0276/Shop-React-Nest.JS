@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import MainContext from "../../context/MainContext";
 import useWebsiteTitle from "../../hooks/useWebisteTitle";
@@ -16,10 +16,6 @@ export default function UserPanel() {
     mainPanel.current.classList.toggle(`${styles.active}`);
     showMenuButton.current.classList.toggle(`${styles.active}`);
   };
-
-  useEffect(() => {
-    window.localStorage.setItem("username", "kacper@xd.pl");
-  }, []);
 
   return (
     <div className={`${styles.main_container}`}>

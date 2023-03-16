@@ -1,5 +1,6 @@
 .main_container {
   min-height: 85vh;
+  position: relative;
 }
 
 /* Container auction */
@@ -10,4 +11,16 @@
   flex-direction: row;
   flex-wrap: wrap;
   overflow-y: scroll;
+}
+
+/* Back arrow */
+.back_arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-200px, -50px);
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 5;
 }

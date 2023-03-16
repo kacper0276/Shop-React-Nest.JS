@@ -6,6 +6,7 @@ import { Users } from 'src/dtos/Users.entity';
 import { loginType } from 'src/types/loginType';
 import { rabatCodeType } from 'src/types/rabatCodeType';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AdminPanelService {
@@ -124,7 +125,7 @@ export class AdminPanelService {
   }
 
   async changeUserData(data: loginType, id: number) {
-    const { email } = data,
+    let { email } = data,
       { password } = data,
       { isActive } = data,
       { userType } = data,
@@ -132,14 +133,44 @@ export class AdminPanelService {
       userActualDate = await this.usersRepository.findBy({
         id: idNumber,
       });
-
-    console.log(email, password, isActive, userType);
+    const salt = bcrypt.genSaltSync(10);
 
     const emailChange = Boolean(email),
       passwordChange = Boolean(password),
       isActiveChange = isActive === null ? false : true,
       userTypeChange = userType === null ? false : true;
 
-    this.usersRepository.query(`UPDATE users SET`);
+    if (email.includes('@') === false && emailChange) {
+      return { message: 'Błąd! Twój login nie jest emailem' };
+    }
+
+    if (password.length < 6 && passwordChange) {
+      return { message: 'Błąd! Twoje hasło jest za krótkie' };
+    }
+
+    email = emailChange ? email : userActualDate[0].email;
+    password = passwordChange
+      ? await bcrypt.hashSync(password, salt)
+      : userActualDate[0].password;
+    isActive = isActiveChange ? isActive : userActualDate[0].isActive;
+    userType = userTypeChange ? userType : userActualDate[0].userType;
+
+    console.log(email, password, isActive, userType);
+
+    this.usersRepository.query(
+      `UPDATE users SET email='${email}', password='${password}', isActive=${isActive}, userType='${userType}' WHERE id=${idNumber} `,
+    );
+
+    return { message: 'Poprawnie zmieniono dane użytkownika' };
   }
+
+  async deleteUser(id: number) {
+    await this.usersRepository.delete({
+      id: id,
+    });
+
+    return { message: 'Usunięto użytkownika' };
+  }
+
+  // Auction function
 }
