@@ -1,4 +1,5 @@
 import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { auctionType } from 'src/types/auctionType';
 import { loginType } from 'src/types/loginType';
 import { rabatCodeType } from 'src/types/rabatCodeType';
 import { AdminPanelService } from './adminPanel.service';
@@ -51,4 +52,13 @@ export class AdminPanelController {
   }
 
   // Auaction panel
+  @Post('/addtypeauction')
+  async addType(@Body() data: auctionType) {
+    return await this.adminPanelService.addAuctionType(data);
+  }
+
+  @Get('/getalltypesproducts')
+  async getAllTypes() {
+    return await this.adminPanelService.getAllTypesProducts();
+  }
 }

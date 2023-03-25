@@ -1,0 +1,88 @@
+/* Main container */
+.main_container {
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form style */
+.form_add_auction {
+  position: relative;
+  height: 75vh;
+  width: 50%;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form_add_auction > input {
+  width: 50%;
+  height: 5%;
+  border-radius: 5px;
+}
+
+.form_add_auction > textarea {
+  width: 50%;
+  height: 25%;
+  border-radius: 5px;
+}
+
+/* Add auction button */
+.add_auction_button {
+  padding: 15px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background: rgb(105, 110, 93);
+  color: currentColor;
+}
+
+/* Error div */
+.error_div {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 75px;
+  background: rgb(205, 55, 50);
+  transform: translate(50%, -50px);
+  border-radius: 10px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.error_div.active {
+  display: flex;
+}
+
+/* Button close error div */
+.button_close_error_div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15%;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.button_close_error_div > span:first-child {
+  width: 80%;
+  height: 25%;
+  background: black;
+  transform: translateY(50%) rotate(135deg);
+}
+
+.button_close_error_div > span:last-child {
+  width: 80%;
+  height: 25%;
+  background: black;
+  transform: translateY(-50%) rotate(45deg);
+}

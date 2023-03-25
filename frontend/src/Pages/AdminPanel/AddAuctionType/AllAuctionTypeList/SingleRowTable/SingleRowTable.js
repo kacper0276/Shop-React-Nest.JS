@@ -4,8 +4,14 @@ export default function SingleRowTable(props) {
   return (
     <tbody className={`${styles.tbody}`}>
       <tr>
-        <td>TAK</td>
-        <td>NIE</td>
+        <td>{props.id}</td>
+        <td>{props.name}</td>
+        <td>
+          <button className={`${styles.delete_button}`}>Usuń</button>
+        </td>
+        <td>
+          <button className={`${styles.edit_button}`}>Edytuj</button>
+        </td>
       </tr>
     </tbody>
   );

@@ -7,3 +7,8 @@ Finalizowanie
 Aktualizacja statusu
 Panel użytkownika
 Educja konta
+
+Dokończ:
+- Dodawanie zdjęć do slidera
+- Usuwanie typów aukcji(Wtedy wszystkie aukcje mające ten typ usuwa im się)
+- Edycja typów aukcji

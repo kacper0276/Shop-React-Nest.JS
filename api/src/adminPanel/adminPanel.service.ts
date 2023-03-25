@@ -7,6 +7,7 @@ import { loginType } from 'src/types/loginType';
 import { rabatCodeType } from 'src/types/rabatCodeType';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { auctionType } from 'src/types/auctionType';
 
 @Injectable()
 export class AdminPanelService {
@@ -173,4 +174,24 @@ export class AdminPanelService {
   }
 
   // Auction function
+  async addAuctionType(data: auctionType) {
+    const { name } = data;
+
+    if (name.length > 0) {
+      try {
+        this.productsTypeRepository.save({ name: name });
+        return { message: 'Poprawnie dodano' };
+      } catch (e) {
+        throw new Error(e);
+      }
+    } else {
+      return { message: 'Błąd, nie może być pusta wartość' };
+    }
+  }
+
+  async getAllTypesProducts() {
+    const data = await this.productsTypeRepository.find();
+
+    return { data: data };
+  }
 }

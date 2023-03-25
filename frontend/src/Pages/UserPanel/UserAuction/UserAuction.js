@@ -18,46 +18,6 @@ export default function UserAuction() {
           price: 22,
           img: "1.JPG",
         },
-        {
-          name: "TAK",
-          price: 22,
-          img: "1.JPG",
-        },
-        {
-          name: "TAK",
-          price: 22,
-          img: "1.JPG",
-        },
-        {
-          name: "TAK",
-          price: 22,
-          img: "1.JPG",
-        },
-        {
-          name: "TAK",
-          price: 22,
-          img: "1.JPG",
-        },
-        {
-          name: "TAK",
-          price: 22,
-          img: "1.JPG",
-        },
-        {
-          name: "TAK",
-          price: 22,
-          img: "1.JPG",
-        },
-        {
-          name: "TAK",
-          price: 22,
-          img: "1.JPG",
-        },
-        {
-          name: "TAK",
-          price: 22,
-          img: "1.JPG",
-        },
       ]);
 
       setLoadingStatus(false);

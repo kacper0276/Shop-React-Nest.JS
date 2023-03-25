@@ -1,0 +1,21 @@
+.tbody {
+  width: 100%;
+}
+
+/* Delete button */
+.delete_button {
+  width: 50%;
+  height: 100%;
+  background: rgb(206, 22, 22);
+  border: none;
+  cursor: pointer;
+}
+
+/* Edit button */
+.edit_button {
+  width: 50%;
+  height: 100%;
+  background: rgb(206, 203, 22);
+  border: none;
+  cursor: pointer;
+}

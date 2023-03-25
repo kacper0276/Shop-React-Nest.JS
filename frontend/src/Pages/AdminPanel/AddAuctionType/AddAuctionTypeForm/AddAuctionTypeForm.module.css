@@ -41,6 +41,11 @@
   align-items: center;
   background: rgb(182, 7, 7);
   border-radius: 6px;
+  display: none;
+}
+
+.error_message_div.active {
+  display: flex;
 }
 
 /* Close button */

@@ -1,12 +1,10 @@
-import { useContext, useRef } from "react";
-import { Link } from "react-router-dom";
-import MainContext from "../../context/MainContext";
+import { useRef } from "react";
 import useWebsiteTitle from "../../hooks/useWebisteTitle";
 import styles from "./UserPanel.module.css";
+import UserPanelNavigation from "./UserPanelNavigation/UserPanelNavigaion";
 
 export default function UserPanel() {
   useWebsiteTitle("Panel użytkownika");
-  const context = useContext(MainContext);
   const sideMenu = useRef();
   const mainPanel = useRef();
   const showMenuButton = useRef();
@@ -20,39 +18,7 @@ export default function UserPanel() {
   return (
     <div className={`${styles.main_container}`}>
       <div className={`${styles.side_menu}`} ref={sideMenu}>
-        <ul className={`${styles.navigation}`}>
-          <li className={`${styles.navigation_element}`}>
-            <Link to={"/paneluzytkownika"}>Panel główny</Link>
-          </li>
-          <li className={`${styles.navigation_element}`}>
-            <Link to={"/paneluzytkownika/zmiendane"}>Zmień dane konta</Link>
-          </li>
-          <li className={`${styles.navigation_element}`}>
-            <Link to={"/paneluzytkownika/twojeaukcje"}>Twoje aukcje</Link>
-          </li>
-          {context.state.userStatus === "admin" ? (
-            <>
-              <li className={`${styles.navigation_element}`}>
-                <Link to={"/paneladmina/typyaukcji"}>Dodaj typ aukcji</Link>
-              </li>
-              <li className={`${styles.navigation_element}`}>
-                <Link to={"/paneladmina/edytujuzytkownikow"}>
-                  Edytuj użytkowników
-                </Link>
-              </li>
-              <li className={`${styles.navigation_element}`}>
-                <Link to={"/paneladmina/dodajkodrabatowy"}>
-                  Dodaj kod rabatowy
-                </Link>
-              </li>
-              <li className={`${styles.navigation_element}`}>
-                <Link to={"/paneladmina/dodajzdjeciaslidera"}>
-                  Dodaj zdjęcia slidera
-                </Link>
-              </li>
-            </>
-          ) : null}
-        </ul>
+        <UserPanelNavigation />
       </div>
       <div className={`${styles.main_panel}`} ref={mainPanel}>
         <button

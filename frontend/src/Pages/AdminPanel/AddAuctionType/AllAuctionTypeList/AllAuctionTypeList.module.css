@@ -2,14 +2,11 @@
   width: 50%;
   height: 85vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   overflow-y: auto;
 }
-
-.main_table > thead {
-  width: 100%;
-}
-
-.main_table th {
-  width: 50%;
+td,
+th {
+  width: 25vw;
+  text-align: center;
 }

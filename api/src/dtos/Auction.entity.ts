@@ -19,4 +19,7 @@ export default class Auction {
 
   @Column()
   img: string;
+
+  @Column()
+  seller: string;
 }
