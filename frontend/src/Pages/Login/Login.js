@@ -83,6 +83,7 @@ export default function Login() {
           <div
             className={`${styles.forgot_password}`}
             onClick={() => {
+              setMessage("");
               setShowForgotPanel(true);
             }}
           >

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import useWebsiteTitle from "../../hooks/useWebisteTitle";
 import styles from "./ForgotPassword.module.css";
+import axios from "axios";
+import { api_url } from "../../App";
 
 export default function ForgotPassword(props) {
   useWebsiteTitle("Reset hasła");
@@ -10,9 +12,13 @@ export default function ForgotPassword(props) {
   const sendEmail = async (e) => {
     e.preventDefault();
 
-    console.log(email);
-
-    setShowMessage(true);
+    axios
+      .post(`${api_url}/authenticated/forgotpasswordsendlink/${email}`)
+      .then((res) => {
+        if (res.data.message === "Wysłano maila") {
+          setShowMessage(true);
+        }
+      });
   };
 
   return (

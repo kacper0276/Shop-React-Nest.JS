@@ -1,14 +1,20 @@
+import axios from "axios";
 import { useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { api_url } from "../../../App";
+import useWebsiteTitle from "../../../hooks/useWebisteTitle";
 import styles from "./ForgotPasswordPage.module.css";
 
 export default function ForgotPasswordPage() {
+  useWebsiteTitle("Zresetuj hasło");
   const params = useParams();
+  const navigate = useNavigate();
   const [changePasswordData, setChangePasswordData] = useState({
     email: params.username,
     password: "",
-    password2: "",
+    second_password: "",
   });
+  const [message, setMessage] = useState("");
   const password1 = useRef(),
     password2 = useRef(),
     img1 = useRef(),
@@ -37,6 +43,21 @@ export default function ForgotPasswordPage() {
 
   const changePasswordFunction = (e) => {
     e.preventDefault();
+
+    if (changePasswordData.password !== changePasswordData.second_password) {
+      setMessage("Błąd! Hasła nie są takie same");
+    } else {
+      axios
+        .post(`${api_url}/authenticated/changepassword`, changePasswordData)
+        .then((res) => {
+          console.log(res);
+          if (res.data.message.includes("Błąd")) {
+            setMessage(res.data.message);
+          } else {
+            navigate("/");
+          }
+        });
+    }
   };
 
   return (
@@ -80,7 +101,7 @@ export default function ForgotPasswordPage() {
             onChange={(e) =>
               setChangePasswordData({
                 ...changePasswordData,
-                password2: e.target.value,
+                second_password: e.target.value,
               })
             }
             ref={password2}
@@ -106,6 +127,9 @@ export default function ForgotPasswordPage() {
         >
           Zatwierdź zmianę hasła
         </button>
+        {message ? (
+          <div className={`${styles.error_message}`}>{message}</div>
+        ) : null}
       </form>
     </div>
   );

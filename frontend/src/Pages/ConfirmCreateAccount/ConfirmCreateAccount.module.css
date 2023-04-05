@@ -6,7 +6,19 @@
   flex-direction: column;
 }
 
-.main_container > p:last-child {
+.main_container > b {
   color: blue;
   cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Error div */
+.error_message {
+  width: 20%;
+  height: 100px;
+  background: rgb(199, 39, 39);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
 }
