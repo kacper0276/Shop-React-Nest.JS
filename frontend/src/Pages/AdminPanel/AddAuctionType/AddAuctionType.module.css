@@ -1,3 +1,25 @@
 .main_container {
   min-height: 85vh;
+  position: relative;
+}
+
+/* Back arrow */
+.back_arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+@media only screen and (max-width: 1000px) {
+  .back_arrow {
+    left: auto;
+    right: 0;
+    transform: translate(0, -50px);
+    width: 100px;
+    height: 50px;
+  }
 }

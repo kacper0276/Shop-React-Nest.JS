@@ -34,9 +34,7 @@ export default function UserPanelNavigation() {
             <Link to={"/paneladmina/dodajkodrabatowy"}>Dodaj kod rabatowy</Link>
           </li>
           <li className={`${styles.navigation_element}`}>
-            <Link to={"/paneladmina/dodajzdjeciaslidera"}>
-              Dodaj zdjęcia slidera
-            </Link>
+            <Link to={"/paneladmina/slider"}>Dodaj zdjęcia slidera</Link>
           </li>
         </>
       ) : null}

@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 /* Form style */
@@ -85,4 +86,26 @@
   height: 25%;
   background: black;
   transform: translateY(-50%) rotate(45deg);
+}
+
+/* Back arrow */
+.back_arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(30px, 50px);
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+@media only screen and (max-width: 1000px) {
+  .back_arrow {
+    left: auto;
+    right: 0;
+    transform: translate(0, -50px);
+    width: 100px;
+    height: 50px;
+  }
 }

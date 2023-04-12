@@ -28,6 +28,7 @@ export default function AllAuctionTypeList() {
           <th>Nazwa</th>
           <th>Usuń</th>
           <th>Edytuj</th>
+          <th></th>
         </tr>
       </thead>
       {loading

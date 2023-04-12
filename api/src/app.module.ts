@@ -10,6 +10,7 @@ import UsersPanelModule from './usersPanel/usersPanel.module';
 import { RabatCode } from './dtos/RabatCode.entity';
 import ProductsType from './dtos/ProductsType.entity';
 import { AdminPanelModule } from './adminPanel/adminPanel.module';
+import Slider from './dtos/Slider.entity';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { AdminPanelModule } from './adminPanel/adminPanel.module';
       username: 'root',
       password: '',
       database: 'shop-nest-react',
-      entities: [Users, Auction, Orders, ProductsType, RabatCode],
+      entities: [Users, Auction, Orders, ProductsType, RabatCode, Slider],
       synchronize: true,
     }),
     AuthenticatedModule,

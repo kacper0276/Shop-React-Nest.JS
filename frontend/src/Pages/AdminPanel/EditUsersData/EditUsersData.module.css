@@ -25,3 +25,13 @@
   cursor: pointer;
   z-index: 5;
 }
+
+@media only screen and (max-width: 1000px) {
+  .back_arrow {
+    left: auto;
+    right: 0;
+    transform: translate(0, -50px);
+    width: 100px;
+    height: 50px;
+  }
+}

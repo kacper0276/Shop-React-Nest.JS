@@ -8,6 +8,8 @@ import { rabatCodeType } from 'src/types/rabatCodeType';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { auctionType } from 'src/types/auctionType';
+import Auction from 'src/dtos/Auction.entity';
+import Slider from 'src/dtos/Slider.entity';
 
 @Injectable()
 export class AdminPanelService {
@@ -19,6 +21,12 @@ export class AdminPanelService {
 
     @InjectRepository(RabatCode)
     private rabatCodeRepository: Repository<RabatCode>,
+
+    @InjectRepository(Auction)
+    private auctionRepository: Repository<Auction>,
+
+    @InjectRepository(Slider)
+    private sliderRepository: Repository<Slider>,
   ) {}
 
   // Rabat Code functions
@@ -173,7 +181,7 @@ export class AdminPanelService {
     return { message: 'Usunięto użytkownika' };
   }
 
-  // Auction function
+  // Auction type function
   async addAuctionType(data: auctionType) {
     const { name } = data;
 
@@ -193,5 +201,66 @@ export class AdminPanelService {
     const data = await this.productsTypeRepository.find();
 
     return { data: data };
+  }
+
+  async deleteAuctionType(name: string) {
+    const typeExpist = await this.productsTypeRepository.findBy({
+      name: name,
+    });
+
+    if (typeExpist.length > 0) {
+      this.auctionRepository.query(
+        `DELETE FROM auction WHERE productType='${name}'`,
+      );
+      this.productsTypeRepository.query(
+        `DELETE FROM products_type WHERE name='${name}'`,
+      );
+      return { message: 'Poprawnie usunięto' };
+    } else {
+      return { message: 'Błąd! Nie ma takiego typu aukcji' };
+    }
+  }
+
+  async editAuctionType(data: auctionType) {
+    const { id } = data,
+      { name } = data;
+
+    const oldName = await this.productsTypeRepository.findBy({ id: id });
+
+    try {
+      this.productsTypeRepository.query(
+        `UPDATE products_type SET name='${name}' WHERE id=${id}`,
+      );
+
+      this.auctionRepository.query(
+        `UPDATE auction SET productType='${name}' WHERE productType='${oldName[0].name}'`,
+      );
+
+      return { message: 'Zmieniono' };
+    } catch (e) {
+      throw new Error('Błąd');
+    }
+  }
+
+  // Slider panel
+  async addPhotoSlider(file: any) {
+    const { filename } = file;
+
+    const objectToSave = {
+      namePhoto: filename,
+    };
+
+    try {
+      this.sliderRepository.save(objectToSave);
+      return { message: 'Dodano zdjęcie' };
+    } catch (e) {
+      return { message: 'Błąd' };
+    }
+  }
+
+  async getAllPhotosInSlider() {
+    const allPhotos = await this.sliderRepository.find();
+
+    return { photos: allPhotos };
   }
 }

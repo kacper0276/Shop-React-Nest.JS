@@ -21,7 +21,7 @@ export default function Slider(props) {
       slider.current.src = `/slider/transition.JPG`;
 
       setTimeout(() => {
-        slider.current.src = `/slider/${image[i]}`;
+        slider.current.src = `/slider/${image[i].namePhoto}`;
       }, 100);
     }, 5000);
 
@@ -33,7 +33,7 @@ export default function Slider(props) {
     slider.current.src = `/slider/transition.JPG`;
 
     setTimeout(() => {
-      slider.current.src = `/slider/${image[i]}`;
+      slider.current.src = `/slider/${image[i].namePhoto}`;
     }, 100);
   };
 
@@ -42,7 +42,7 @@ export default function Slider(props) {
     slider.current.src = `/slider/transition.JPG`;
 
     setTimeout(() => {
-      slider.current.src = `/slider/${image[i]}`;
+      slider.current.src = `/slider/${image[i].namePhoto}`;
     }, 100);
   };
 
@@ -65,7 +65,7 @@ export default function Slider(props) {
           </svg>
         </button>
       </div>
-      <img alt="img" src={`/slider/${image[0]}`} ref={slider} />
+      <img alt="img" src={`/slider/${image[0].namePhoto}`} ref={slider} />
       <div className={`${styles.right_array}`}>
         <button onClick={nextPhoto}>
           <svg

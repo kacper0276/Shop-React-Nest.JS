@@ -1,14 +1,16 @@
-Aktywacja przez maila
-Layout
-Logowanie
-Rejestracja
-Koszyk
-Finalizowanie
-Aktualizacja statusu
-Panel użytkownika
-Educja konta
+Zadania ToDo:
+- Zdjęcia
+- Dodawanie aukcji (next task)
+- Koszyk
+- Finalizowanie
+- Aktualizacja statusu
+- Anulowanie zamówień
+- Wysyłanie maila z potwierdzeniem zamówienia
 
-Dokończ:
+Przyszłe bajery:
+- kolejność zdjęć slidera
+- zdjęcia użytkowników
+- Strony domowe użytkowników
+
+Aktywne zadanie:
 - Dodawanie zdjęć do slidera
-- Usuwanie typów aukcji(Wtedy wszystkie aukcje mające ten typ usuwa im się)
-- Edycja typów aukcji

@@ -1,0 +1,108 @@
+.main_div {
+  min-height: 85vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Back arrow */
+.back_arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(30px, 50px);
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+@media only screen and (max-width: 1000px) {
+  .back_arrow {
+    left: auto;
+    right: 0;
+    transform: translate(0, -50px);
+    width: 100px;
+    height: 50px;
+  }
+}
+
+/* Form */
+.add_photo_form {
+  width: 30%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input file */
+input[type="file"] {
+  width: 350px;
+  max-width: 100%;
+  color: #444;
+  padding: 5px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #555;
+}
+
+/* Add photo button */
+.add_button {
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Message div */
+.message_div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 250px;
+  height: 250px;
+  border: 1px solid rgb(65, 57, 55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Close icon */
+.close_icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+}
+
+.close_icon > button {
+  background: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.close_icon > button > span:first-child {
+  width: 100%;
+  height: 40%;
+  background: #000;
+  border: 1px solid #fff;
+  display: block;
+  transform: translateY(50%) rotate(-45deg);
+}
+
+.close_icon > button > span:last-child {
+  display: block;
+  width: 100%;
+  height: 40%;
+  background: #000;
+  border: 1px solid #fff;
+  transform: translateY(-50%) rotate(45deg);
+}

@@ -27,6 +27,7 @@ import AddRabatCode from "./Pages/AdminPanel/AddEditRabatCode/AddRabatCode";
 import EditUsersData from "./Pages/AdminPanel/EditUsersData/EditUsersData";
 import AddAuctionType from "./Pages/AdminPanel/AddAuctionType/AddAuctionType";
 import AddAuction from "./Pages/UserPanel/AddAuction/AddAuction";
+import EditSliderPhotos from "./Pages/AdminPanel/EditSliderPhotos/EditSliderPhotos";
 
 export const api_url = `http://localhost:3002/api`;
 
@@ -68,6 +69,8 @@ function App() {
         <Route path="/produkt/:id" exact element={<ProductsDetails />} />
         <Route path="/koszyk" exact element={<ShoppingCard />} />
         <Route path="/szczegolydostawy" exact element={<OrderSetting />} />
+
+        {/* User panel */}
         <Route
           path="/paneluzytkownika"
           exact
@@ -104,6 +107,8 @@ function App() {
             </AuthenticatedRoute>
           }
         />
+
+        {/* Admin panel */}
         <Route
           path="/paneladmina/edytujuzytkownikow"
           exact
@@ -131,6 +136,16 @@ function App() {
             </AuthenticatedAdminRoute>
           }
         />
+        <Route
+          path="/paneladmina/slider"
+          exact
+          element={
+            <AuthenticatedAdminRoute>
+              <EditSliderPhotos />
+            </AuthenticatedAdminRoute>
+          }
+        />
+        {/* Error */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

@@ -22,4 +22,7 @@ export default class Auction {
 
   @Column()
   seller: string;
+
+  @Column()
+  productType: string;
 }
