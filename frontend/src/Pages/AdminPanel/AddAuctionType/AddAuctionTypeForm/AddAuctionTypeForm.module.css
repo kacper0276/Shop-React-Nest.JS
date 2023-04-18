@@ -75,3 +75,11 @@
   background: #000;
   transform: rotate(135deg);
 }
+
+@media only screen and (max-width: 1000px) {
+  .form_to_add_auction_type {
+    margin-top: 50px;
+    width: 100%;
+    height: auto;
+  }
+}

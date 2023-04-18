@@ -10,6 +10,7 @@ import * as bcrypt from 'bcrypt';
 import { auctionType } from 'src/types/auctionType';
 import Auction from 'src/dtos/Auction.entity';
 import Slider from 'src/dtos/Slider.entity';
+import * as fs from 'fs';
 
 @Injectable()
 export class AdminPanelService {
@@ -262,5 +263,22 @@ export class AdminPanelService {
     const allPhotos = await this.sliderRepository.find();
 
     return { photos: allPhotos };
+  }
+
+  async deletePhotoSlider(id: number) {
+    const photoDetails = await this.sliderRepository.findBy({
+      id: id,
+    });
+
+    if (photoDetails.length < 1) {
+      return { message: 'Błąd! Brak zdjęcia o podanym id.' };
+    } else {
+      fs.unlinkSync(`../frontend/public/slider/${photoDetails[0].namePhoto}`);
+      this.sliderRepository.delete({
+        id: id,
+      });
+
+      return { message: 'Poprawnie usunięto' };
+    }
   }
 }

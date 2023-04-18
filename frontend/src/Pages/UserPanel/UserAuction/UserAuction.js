@@ -1,9 +1,11 @@
+import styles from "./UserAuction.module.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useWebsiteTitle from "../../../hooks/useWebisteTitle";
 import LoadingIcon from "../../../Layout/UI/LoadingIcon/LoadingIcon";
 import Auction from "./Auction/Auction";
-import styles from "./UserAuction.module.css";
+import axios from "axios";
+import { api_url } from "../../../App";
 
 export default function UserAuction() {
   useWebsiteTitle("Twoje aukcje");
@@ -12,15 +14,16 @@ export default function UserAuction() {
 
   useEffect(() => {
     const fetchAuction = async () => {
-      setUserAuction([
-        {
-          name: "TAK",
-          price: 22,
-          img: "1.JPG",
-        },
-      ]);
-
-      setLoadingStatus(false);
+      axios
+        .get(
+          `${api_url}/userspanel/getalluserproduct/${window.localStorage.getItem(
+            "username"
+          )}`
+        )
+        .then((res) => {
+          setUserAuction(res.data.auctions);
+          setLoadingStatus(false);
+        });
     };
 
     fetchAuction();

@@ -1,0 +1,25 @@
+.list_photos_element {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Photo show */
+.show_photo_hover {
+  display: none;
+}
+
+.list_photos_element:hover > .show_photo_hover {
+  display: block;
+}
+
+/* Button delete */
+.list_photos_element > button {
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}

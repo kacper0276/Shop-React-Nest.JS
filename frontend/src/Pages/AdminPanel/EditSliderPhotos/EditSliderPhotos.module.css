@@ -1,9 +1,11 @@
 .main_div {
   min-height: 85vh;
+  width: 100%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 /* Back arrow */
@@ -31,7 +33,7 @@
 /* Form */
 .add_photo_form {
   width: 30%;
-  height: 500px;
+  height: 200px;
   display: flex;
   align-items: center;
   flex-direction: column;

@@ -4,17 +4,19 @@ import { Users } from 'src/dtos/Users.entity';
 import { loginType } from 'src/types/loginType';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { userAuctionType } from 'src/types/userAuctionType';
+import * as fs from 'fs';
+import Auction from 'src/dtos/Auction.entity';
 
 @Injectable()
 export default class UsersPanelService {
   constructor(
     @InjectRepository(Users) private usersRepository: Repository<Users>,
+
+    @InjectRepository(Auction) private auctionRepository: Repository<Auction>,
   ) {}
 
   async editUserData(username: string, newData: loginType) {
-    console.log(username);
-    console.log('___________________');
-    console.log(newData);
     const salt = bcrypt.genSaltSync(10);
     const { email } = newData,
       { password } = newData;
@@ -36,5 +38,44 @@ export default class UsersPanelService {
     } else {
       return { message: 'Błąd emaila lub za krótkie hasło' };
     }
+  }
+
+  async addAuction(file: any, data: userAuctionType) {
+    const { filename } = file;
+
+    if (
+      data.description.trim() === '' ||
+      data.name.trim() === '' ||
+      data.quentity <= 0 ||
+      data.price < 0 ||
+      data.seller.trim() === '' ||
+      data.productType.trim() === ''
+    ) {
+      fs.unlinkSync(`../frontend/public/products/${filename}`);
+      return { message: 'Błąd! Sprawdź poprawność danych' };
+    }
+    const newObject = {
+      name: data.name,
+      price: data.price,
+      quentity: data.quentity,
+      description: data.description,
+      img: filename,
+      seller: data.seller,
+      productType: data.productType,
+    };
+
+    this.auctionRepository.save(newObject);
+    return {
+      message:
+        'Poprawnie dodano aukcje! Za moment zostaniesz przekierowany do strony głównej',
+    };
+  }
+
+  async getAllUserAuction(username: string) {
+    const userAuctions = await this.auctionRepository.findBy({
+      seller: username,
+    });
+
+    return { auctions: userAuctions };
   }
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { api_url } from "../../../App";
+import ListPhotos from "./ListPhotos/ListPhotos";
 
 export default function EditSliderPhotos() {
   useWebsiteTitle("Edytuj slider");
@@ -72,6 +73,7 @@ export default function EditSliderPhotos() {
           {message}
         </div>
       ) : null}
+      <ListPhotos />
     </div>
   );
 }

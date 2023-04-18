@@ -1,11 +1,16 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useWebsiteTitle from "../../../hooks/useWebisteTitle";
 import styles from "./AddAuction.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { api_url } from "../../../App";
+import axios from "axios";
 
 export default function AddAuction() {
   useWebsiteTitle("Dodaj aukcję");
+  const navigate = useNavigate();
   const errorDiv = useRef();
+  const productTypeSelect = useRef();
+  const [message, setMessage] = useState("");
   const [data, setData] = useState({
     name: "",
     price: 0,
@@ -13,15 +18,53 @@ export default function AddAuction() {
     description: "",
     img: null,
     seller: `${window.localStorage.getItem("username")}`,
+    productType: "",
   });
+
+  const fetchProductsType = async () => {
+    axios.get(`${api_url}/adminpanel/getalltypesproducts`).then((res) => {
+      setData({ ...data, productType: res.data.data[0].name });
+      res.data.data.forEach((el) => {
+        const option = document.createElement("option");
+        option.setAttribute("value", el.name);
+        option.innerText = `${el.name}`;
+        productTypeSelect.current.append(option);
+      });
+    });
+  };
 
   const addAuctionUser = async (e) => {
     e.preventDefault();
 
-    console.log(data);
+    const newData = new FormData();
+    newData.append("name", data.name);
+    newData.append("price", data.price);
+    newData.append("quentity", data.quentity);
+    newData.append("description", data.description);
+    newData.append("img", data.img);
+    newData.append("seller", data.seller);
+    newData.append("productType", data.productType);
 
-    errorDiv.current.classList.add(`${styles.active}`);
+    axios.post(`${api_url}/userspanel/addauction`, newData).then((res) => {
+      if (res.data.message.includes("Błąd")) {
+        setMessage(res.data.message);
+        errorDiv.current.classList.add(`${styles.active}`);
+      } else {
+        setMessage(res.data.message);
+        errorDiv.current.style.background = "green";
+        errorDiv.current.classList.add(`${styles.active}`);
+
+        setTimeout(() => {
+          navigate("/paneluzytkownika");
+        }, 3000);
+      }
+    });
   };
+
+  useEffect(() => {
+    fetchProductsType();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className={`${styles.main_container}`}>
@@ -53,6 +96,7 @@ export default function AddAuction() {
           type={"number"}
           min={0}
           name={"price"}
+          placeholder="Cena w zł"
           onChange={(e) => {
             setData({ ...data, price: e.target.value });
           }}
@@ -61,6 +105,7 @@ export default function AddAuction() {
           type={"number"}
           min={1}
           name={"quantity"}
+          placeholder="Ile sztuk na sprzedaż"
           onChange={(e) => {
             setData({ ...data, quentity: e.target.value });
           }}
@@ -78,6 +123,10 @@ export default function AddAuction() {
             setData({ ...data, img: e.target.files[0] });
           }}
         />
+        <select
+          ref={productTypeSelect}
+          onChange={(e) => setData({ ...data, productType: e.target.value })}
+        ></select>
         <button
           className={`${styles.add_auction_button}`}
           onClick={addAuctionUser}
@@ -95,7 +144,7 @@ export default function AddAuction() {
             <span></span>
             <span></span>
           </div>
-          <p>Błąd</p>
+          <p>{message}</p>
         </div>
       </form>
     </div>

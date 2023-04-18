@@ -104,4 +104,9 @@ export class AdminPanelController {
   async getAllPhotosInSlider() {
     return this.adminPanelService.getAllPhotosInSlider();
   }
+
+  @Post('/deletephotoslider/:id')
+  async deletePhotoSlider(@Param('id') id: number) {
+    return this.adminPanelService.deletePhotoSlider(id);
+  }
 }

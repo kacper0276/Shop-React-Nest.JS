@@ -1,9 +1,15 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { Param } from '@nestjs/common/decorators';
+import {
+  Get,
+  Param,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common/decorators';
 import { loginType } from 'src/types/loginType';
 import UsersPanelService from './usersPanel.service';
 import { diskStorage } from 'multer';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { userAuctionType } from 'src/types/userAuctionType';
 
 const storage = {
   storage: diskStorage({
@@ -26,5 +32,16 @@ export class UsersPanelController {
     @Body() newData: loginType,
   ) {
     return await this.usersPanelService.editUserData(username, newData);
+  }
+
+  @Post('/addauction')
+  @UseInterceptors(FileInterceptor('img', storage))
+  async addAuction(@UploadedFile() file, @Body() data: userAuctionType) {
+    return this.usersPanelService.addAuction(file, data);
+  }
+
+  @Get('/getalluserproduct/:username')
+  async getAllUserProduct(@Param('username') username: string) {
+    return this.usersPanelService.getAllUserAuction(username);
   }
 }

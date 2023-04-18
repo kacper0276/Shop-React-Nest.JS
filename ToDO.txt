@@ -1,16 +1,16 @@
 Zadania ToDo:
-- Zdjęcia
-- Dodawanie aukcji (next task)
 - Koszyk
 - Finalizowanie
 - Aktualizacja statusu
 - Anulowanie zamówień
 - Wysyłanie maila z potwierdzeniem zamówienia
+- Wyświetlanie produktów, tworzenie w menu listy z typem produktów (next task)
 
 Przyszłe bajery:
-- kolejność zdjęć slidera
-- zdjęcia użytkowników
+- Kolejność zdjęć slidera
+- Zdjęcia użytkowników
 - Strony domowe użytkowników
+- Edycja aukcji (Włącznie ze zdjęciami)
 
 Aktywne zadanie:
-- Dodawanie zdjęć do slidera
+- Usuwanie aukcji

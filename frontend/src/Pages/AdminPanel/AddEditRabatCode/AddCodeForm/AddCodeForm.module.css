@@ -68,3 +68,9 @@
   border-radius: 7px;
   background: red;
 }
+
+@media only screen and (max-width: 1000px) {
+  .form_panel {
+    width: 100%;
+  }
+}

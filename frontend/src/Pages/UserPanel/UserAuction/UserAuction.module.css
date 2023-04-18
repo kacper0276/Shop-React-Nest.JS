@@ -5,12 +5,12 @@
 
 /* Container auction */
 .auction_main_container {
-  height: 85vh;
+  height: 80vh;
   width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 /* Back arrow */
