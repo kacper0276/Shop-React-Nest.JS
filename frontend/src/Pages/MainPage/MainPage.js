@@ -24,8 +24,10 @@ export default function MainPage() {
 
   return (
     <main className={`${styles.main_container}`}>
-      {loading ? <LoadingIcon /> : <Slider img={img} />}
-      <p>Strona główna</p>
+      <div className={`${styles.slider}`}>
+        {loading ? <LoadingIcon /> : <Slider img={img} />}
+        <p>Strona główna</p>
+      </div>
     </main>
   );
 }

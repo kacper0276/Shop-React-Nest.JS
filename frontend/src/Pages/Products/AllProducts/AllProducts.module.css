@@ -12,3 +12,10 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+@media only screen and (max-width: 1000px) {
+  .products_main_container > h1 {
+    display: block;
+    margin-top: 50px;
+  }
+}

@@ -6,7 +6,7 @@ export default function Product(props) {
     <div className={`${styles.product_main_container}`}>
       <Link to={`/produkt/${props.id}`}>
         <div className={`${styles.img_product}`}>
-          <img src={`../products/${props.img}`} alt={`${props.alt}`} />
+          <img src={`../products/${props.img}`} alt={`Product`} />
           <p className={`${styles.price}`}>{props.price} zł</p>
         </div>
         <div className={`${styles.name_product_div}`}>

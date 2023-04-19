@@ -47,6 +47,24 @@
   font-size: 1.2rem;
 }
 
+.elements_in_shopping_card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  background: red;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -30%);
+}
+
+.elements_in_shopping_card > p {
+  font-size: 13px;
+}
+
 /* Products list in navigation */
 .main_list {
   display: none;

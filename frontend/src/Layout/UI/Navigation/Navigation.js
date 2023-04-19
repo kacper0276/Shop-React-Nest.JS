@@ -1,18 +1,27 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import IconInNavigation from "../IconInNavigation/IconInNavigation";
 import styles from "./Navigation.module.css";
 import MainContext from "../../../context/MainContext";
+import axios from "axios";
+import { api_url } from "../../../App";
 
 export default function Navigation() {
   const context = useContext(MainContext);
   const navigate = useNavigate();
   const buttonMobile = useRef();
   const navigationList = useRef();
+  const [productsTypeList, setProductsTypeList] = useState([]);
 
   const showMenu = () => {
     buttonMobile.current.classList.toggle(`${styles.active}`);
     navigationList.current.classList.toggle(`${styles.active}`);
+  };
+
+  const fetchAllProductsType = async () => {
+    axios.get(`${api_url}/adminpanel/getalltypesproducts`).then((res) => {
+      setProductsTypeList(res.data.data);
+    });
   };
 
   const logOutFunction = (e) => {
@@ -22,6 +31,10 @@ export default function Navigation() {
     context.dispatch({ type: "change-login-status" });
     navigate("/");
   };
+
+  useEffect(() => {
+    fetchAllProductsType();
+  }, []);
 
   return (
     <nav className={`${styles.navigation}`}>
@@ -81,25 +94,26 @@ export default function Navigation() {
                 Wszystkie produkty
               </Link>
             </li>
-            <li>
-              <Link
-                to="/produkty/książki"
-                className={`${styles.navigation_link}`}
-              >
-                Książki
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/produkty/płyty"
-                className={`${styles.navigation_link}`}
-              >
-                Płyty
-              </Link>
-            </li>
+            {productsTypeList.map((product, key) => {
+              return (
+                <li key={key}>
+                  <Link
+                    to={`/produkty/${product.name}`}
+                    className={`${styles.navigation_link}`}
+                  >
+                    {product.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </li>
         <li className={`${styles.navigation_element}`}>
+          <div className={`${styles.elements_in_shopping_card}`}>
+            <p>
+              {JSON.parse(window.localStorage.getItem("shoppingCard")).length}
+            </p>
+          </div>
           <IconInNavigation />
         </li>
       </ul>

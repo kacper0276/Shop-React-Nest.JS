@@ -16,6 +16,7 @@ export default class UsersPanelService {
     @InjectRepository(Auction) private auctionRepository: Repository<Auction>,
   ) {}
 
+  // Edit user data
   async editUserData(username: string, newData: loginType) {
     const salt = bcrypt.genSaltSync(10);
     const { email } = newData,
@@ -40,6 +41,7 @@ export default class UsersPanelService {
     }
   }
 
+  // User auctions
   async addAuction(file: any, data: userAuctionType) {
     const { filename } = file;
 
@@ -77,5 +79,28 @@ export default class UsersPanelService {
     });
 
     return { auctions: userAuctions };
+  }
+
+  async deleteAuction(id: number) {
+    const dataDeletedAuction = await this.auctionRepository.findBy({
+      id: id,
+    });
+
+    if (dataDeletedAuction.length > 0) {
+      try {
+        fs.unlinkSync(
+          `../frontend/public/products/${dataDeletedAuction[0].img}`,
+        );
+        this.auctionRepository.delete({
+          id: id,
+        });
+
+        return { message: 'Poprawnie usunięto!' };
+      } catch (e) {
+        throw new Error(e);
+      }
+    } else {
+      return { message: 'Błąd! Nie ma aukcji o podanym id' };
+    }
   }
 }

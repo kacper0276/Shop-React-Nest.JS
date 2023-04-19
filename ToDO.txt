@@ -1,16 +1,18 @@
 Zadania ToDo:
-- Koszyk
+- Koszyk 
+- Dodawanie do koszyka (next task)
 - Finalizowanie
 - Aktualizacja statusu
 - Anulowanie zamówień
 - Wysyłanie maila z potwierdzeniem zamówienia
-- Wyświetlanie produktów, tworzenie w menu listy z typem produktów (next task)
 
 Przyszłe bajery:
 - Kolejność zdjęć slidera
 - Zdjęcia użytkowników
 - Strony domowe użytkowników
 - Edycja aukcji (Włącznie ze zdjęciami)
+- Dodawanie kilku zdjęć do jednego produktu (forma slider)
+- Walidacja localStorage w shoppingCard
 
 Aktywne zadanie:
-- Usuwanie aukcji
+- Wyświetlanie produktów, tworzenie w menu listy z typem produktów 

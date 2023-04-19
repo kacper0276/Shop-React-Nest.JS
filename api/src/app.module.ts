@@ -11,6 +11,7 @@ import { RabatCode } from './dtos/RabatCode.entity';
 import ProductsType from './dtos/ProductsType.entity';
 import { AdminPanelModule } from './adminPanel/adminPanel.module';
 import Slider from './dtos/Slider.entity';
+import ProductsModule from './products/products.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import Slider from './dtos/Slider.entity';
     AuthenticatedModule,
     UsersPanelModule,
     AdminPanelModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

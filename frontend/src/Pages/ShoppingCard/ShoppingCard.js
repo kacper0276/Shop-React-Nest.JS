@@ -4,6 +4,8 @@ import useWebsiteTitle from "../../hooks/useWebisteTitle";
 import LoadingIcon from "../../Layout/UI/LoadingIcon/LoadingIcon";
 import styles from "./ShoppingCard.module.css";
 import ShoppingCardElement from "./ShoppingCardElement/ShoppingCardElement";
+import axios from "axios";
+import { api_url } from "../../App";
 
 export default function ShoppingCard() {
   useWebsiteTitle("Twój koszyk");
@@ -11,48 +13,39 @@ export default function ShoppingCard() {
   const [productsPrice, setProductsPrice] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  const deleteFromShoppingCard = async (e, id) => {
+    e.preventDefault();
+
+    let ShoppingCardElements = JSON.parse(
+      window.localStorage.getItem("shoppingCard")
+    );
+
+    ShoppingCardElements.forEach((el, index, object) => {
+      if (+el.id === +id) {
+        object.splice(index, 1);
+      }
+    });
+
+    window.localStorage.removeItem("shoppingCard");
+    window.localStorage.setItem(
+      "shoppingCard",
+      JSON.stringify(ShoppingCardElements)
+    );
+  };
+
+  const fetchProducts = async () => {
+    axios
+      .post(
+        `${api_url}/products/productsfromshoppingcard`,
+        JSON.parse(window.localStorage.getItem("shoppingCard"))
+      )
+      .then((res) => {
+        setProductsList(res.data.productsDetails);
+      });
+  };
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      setTimeout(() => {
-        setProductsList([
-          { id: 1, name: "TAK", price: 43, img: "product_1.JPG", alt: "OPIS" },
-          { id: 2, name: "NIE", price: 300, img: "product_1.JPG", alt: "OPIS" },
-          {
-            id: 1,
-            name: "TAK #2",
-            price: 200,
-            img: "product_1.JPG",
-            alt: "OPIS",
-          },
-          {
-            id: 2,
-            name: "NIE #2",
-            price: 100,
-            img: "product_1.JPG",
-            alt: "OPIS",
-          },
-          { id: 1, name: "TAK", price: 43, img: "product_1.JPG", alt: "OPIS" },
-          { id: 2, name: "NIE", price: 300, img: "product_1.JPG", alt: "OPIS" },
-          {
-            id: 1,
-            name: "TAK #2",
-            price: 200,
-            img: "product_1.JPG",
-            alt: "OPIS",
-          },
-          {
-            id: 2,
-            name: "NIE #2",
-            price: 100,
-            img: "product_1.JPG",
-            alt: "OPIS",
-          },
-        ]);
-      }, 2000);
-    };
-
     fetchProducts();
-
     //eslint-disable-next-line
   }, []);
 
@@ -60,11 +53,16 @@ export default function ShoppingCard() {
     const countPrice = async () => {
       let price = 0;
       productsList.forEach((el) => {
-        price += el.price;
+        JSON.parse(window.localStorage.getItem("shoppingCard")).forEach(
+          (element) => {
+            if (element.id === el[0].id) {
+              price += el[0].price * element.quentity;
+            }
+          }
+        );
       });
       setProductsPrice(price);
     };
-
     countPrice();
     setLoading(false);
   }, [productsList]);
@@ -77,7 +75,13 @@ export default function ShoppingCard() {
         <div className={`${styles.main_container}`}>
           <div className={`${styles.summary_product_list}`}>
             {productsList.map((product, key) => {
-              return <ShoppingCardElement key={key} {...product} />;
+              return (
+                <ShoppingCardElement
+                  key={key}
+                  {...product}
+                  deleteFromShoppingCard={deleteFromShoppingCard}
+                />
+              );
             })}
           </div>
           <div className={`${styles.summary_price}`}>

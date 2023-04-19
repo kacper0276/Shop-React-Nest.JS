@@ -26,6 +26,7 @@ const storage = {
 export class UsersPanelController {
   constructor(private usersPanelService: UsersPanelService) {}
 
+  // Edit user data
   @Post('/edituserdata/:username')
   async editUserData(
     @Param('username') username: string,
@@ -34,6 +35,7 @@ export class UsersPanelController {
     return await this.usersPanelService.editUserData(username, newData);
   }
 
+  // User auctions
   @Post('/addauction')
   @UseInterceptors(FileInterceptor('img', storage))
   async addAuction(@UploadedFile() file, @Body() data: userAuctionType) {
@@ -43,5 +45,10 @@ export class UsersPanelController {
   @Get('/getalluserproduct/:username')
   async getAllUserProduct(@Param('username') username: string) {
     return this.usersPanelService.getAllUserAuction(username);
+  }
+
+  @Post('/deleteauction/:id')
+  async deleteAuction(@Param('id') id: number) {
+    return this.usersPanelService.deleteAuction(id);
   }
 }

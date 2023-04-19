@@ -3,18 +3,23 @@ import useWebsiteTitle from "../../../hooks/useWebisteTitle";
 import Product from "../Product/Product";
 import LoadingIcon from "../../../Layout/UI/LoadingIcon/LoadingIcon";
 import styles from "./AllProducts.module.css";
+import axios from "axios";
+import { api_url } from "../../../App";
 
 export default function AllProducts() {
   useWebsiteTitle("Wszystkie produkty");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchAllProducts = async () => {
+    axios.get(`${api_url}/products/allproductslist`).then((res) => {
+      setProducts(res.data.allProducts);
+      setLoading(false);
+    });
+  };
+
   useEffect(() => {
-    setProducts([
-      { id: 1, name: "TAK", price: 22, img: "product_1.JPG", alt: "OPIS" },
-      { id: 2, name: "NIE", price: 100, img: "product_1.JPG", alt: "OPIS" },
-    ]);
-    setLoading(false);
+    fetchAllProducts();
   }, []);
 
   return (

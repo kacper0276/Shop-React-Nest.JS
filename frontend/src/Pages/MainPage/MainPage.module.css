@@ -1,3 +1,9 @@
 .main_container {
   min-height: 85vh;
 }
+
+@media only screen and (max-width: 1000px) {
+  .slider {
+    margin-top: 50px;
+  }
+}

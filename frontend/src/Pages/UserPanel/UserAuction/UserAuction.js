@@ -12,20 +12,30 @@ export default function UserAuction() {
   const [userAuction, setUserAuction] = useState([]);
   const [loadingStatus, setLoadingStatus] = useState(true);
 
-  useEffect(() => {
-    const fetchAuction = async () => {
-      axios
-        .get(
-          `${api_url}/userspanel/getalluserproduct/${window.localStorage.getItem(
-            "username"
-          )}`
-        )
-        .then((res) => {
-          setUserAuction(res.data.auctions);
-          setLoadingStatus(false);
-        });
-    };
+  const fetchAuction = async () => {
+    axios
+      .get(
+        `${api_url}/userspanel/getalluserproduct/${window.localStorage.getItem(
+          "username"
+        )}`
+      )
+      .then((res) => {
+        setUserAuction(res.data.auctions);
+        setLoadingStatus(false);
+      });
+  };
 
+  const deleteAuction = async (e, id) => {
+    e.preventDefault();
+
+    axios.post(`${api_url}/userspanel/deleteauction/${id}`).then((res) => {
+      if (res.data.message === "Poprawnie usunięto!") {
+        fetchAuction();
+      }
+    });
+  };
+
+  useEffect(() => {
     fetchAuction();
   }, []);
 
@@ -51,7 +61,9 @@ export default function UserAuction() {
       ) : (
         <div className={`${styles.auction_main_container}`}>
           {userAuction.map((auction, key) => {
-            return <Auction {...auction} key={key} />;
+            return (
+              <Auction {...auction} key={key} deleteAuction={deleteAuction} />
+            );
           })}
         </div>
       )}

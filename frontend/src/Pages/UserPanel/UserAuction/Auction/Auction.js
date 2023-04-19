@@ -9,7 +9,14 @@ export default function Auction(props) {
       <div className={`${styles.div_name}`}>{props.name}</div>
       <div className={`${styles.div_price}`}>{props.price} zł</div>
       <div className={`${styles.div_button}`}>
-        <button className={`${styles.delete_button}`}>Usuń</button>
+        <button
+          className={`${styles.delete_button}`}
+          onClick={(e) => {
+            props.deleteAuction(e, props.id);
+          }}
+        >
+          Usuń
+        </button>
       </div>
     </div>
   );
