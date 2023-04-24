@@ -2,16 +2,21 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useWebsiteTitle from "../../../hooks/useWebisteTitle";
 import styles from "./OrderSetting.module.css";
+import axios from "axios";
+import { api_url } from "../../../App";
 
 export default function OrderSetting() {
   useWebsiteTitle("Wybierz szczegóły dostawy");
   const location = useLocation();
+  const [rabatCode, setRabatCode] = useState("");
+  const [actualRabat, setActualRabat] = useState(0);
   const [priceProducts, setProductsPrice] = useState(0);
   const [priceWithoutDelivery, setPriceWithoutDelivery] = useState(0);
   const [orderData, setOrderData] = useState({
     deliveryType: null,
     products: location.state.products,
     price: 0,
+    orderDetails: [window.localStorage.getItem("shoppingCard")],
     deliveryAdres: {
       email: "",
       name: "",
@@ -54,8 +59,23 @@ export default function OrderSetting() {
     }
   };
 
+  const checkRabatCode = async (e) => {
+    e.preventDefault();
+
+    axios.post(`${api_url}/products/checkrabatcode`, rabatCode).then((res) => {
+      if (isNaN(res.data.message)) {
+        console.log("Błąd");
+      } else {
+        setProductsPrice(priceProducts * (res.data.message / 100));
+        setActualRabat(res.data.message);
+      }
+    });
+  };
+
   const sendOrder = (e) => {
     e.preventDefault();
+
+    console.log(orderData);
   };
 
   useEffect(() => {
@@ -159,8 +179,33 @@ export default function OrderSetting() {
         <div className={`${styles.delivery_code}`}>
           <label>
             <span>Kod rabatowy</span>
-            <input type="text" />
-            <button>Sprawdź kod rabatowy</button>
+            {actualRabat ? (
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActualRabat(0);
+                }}
+              >
+                Usuń kod rabatowy
+              </button>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  name="rabatCode"
+                  onChange={(e) => {
+                    setRabatCode(e.target.value);
+                  }}
+                />
+                <button
+                  onClick={(e) => {
+                    checkRabatCode(e);
+                  }}
+                >
+                  Sprawdź kod rabatowy
+                </button>
+              </>
+            )}
           </label>
         </div>
       </form>

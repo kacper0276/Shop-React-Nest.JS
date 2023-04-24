@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProductsService } from './products.service';
+import { PlainBody } from 'src/helpers/PlainBody';
 
 @Controller('products')
 export class ProductsController {
@@ -23,5 +24,11 @@ export class ProductsController {
   @Post('/productsfromshoppingcard')
   async productsFromShoppingCard(@Body() data: any) {
     return this.productsService.productsFromShoppingCard(data);
+  }
+
+  // Rabat Code
+  @Post('/checkrabatcode')
+  async checkRabatCode(@PlainBody() rabatCode: string) {
+    return this.productsService.checkRabatCode(rabatCode);
   }
 }

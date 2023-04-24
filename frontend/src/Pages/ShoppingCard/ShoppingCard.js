@@ -31,6 +31,7 @@ export default function ShoppingCard() {
       "shoppingCard",
       JSON.stringify(ShoppingCardElements)
     );
+    window.location.reload();
   };
 
   const fetchProducts = async () => {

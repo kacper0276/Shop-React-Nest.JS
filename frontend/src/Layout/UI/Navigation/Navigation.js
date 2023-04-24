@@ -111,7 +111,10 @@ export default function Navigation() {
         <li className={`${styles.navigation_element}`}>
           <div className={`${styles.elements_in_shopping_card}`}>
             <p>
-              {JSON.parse(window.localStorage.getItem("shoppingCard")).length}
+              {window.localStorage.getItem("shoppingCard") === null
+                ? 0
+                : JSON.parse(window.localStorage.getItem("shoppingCard"))
+                    .length}
             </p>
           </div>
           <IconInNavigation />
