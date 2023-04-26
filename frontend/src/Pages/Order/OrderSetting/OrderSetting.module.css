@@ -44,6 +44,10 @@
   height: 10%;
 }
 
+.delivery_code > label > input[type="text"] {
+  margin: 0 10px;
+}
+
 /* Delivery result */
 .delivery_result {
   float: left;
@@ -60,4 +64,21 @@
   border: 1px solid black;
   cursor: pointer;
   box-shadow: 10px 5px 10px black;
+}
+/* Delete button rabat code */
+.delete_rabat_code_button {
+  padding: 10px;
+  border-radius: 5px;
+  background: whitesmoke;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+/* Check button rabat code */
+.check_rabat_code_button {
+  padding: 10px;
+  border-radius: 5px;
+  background: whitesmoke;
+  cursor: pointer;
+  margin-left: 10px;
 }

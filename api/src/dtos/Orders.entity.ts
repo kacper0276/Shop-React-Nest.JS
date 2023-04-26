@@ -9,10 +9,10 @@ export default class Orders {
   productName: string;
 
   @Column()
-  productQuantity: number;
+  productQuantity: string;
 
   @Column()
-  productPrice: number;
+  productPrice: string;
 
   @Column()
   adres: string;
@@ -21,8 +21,11 @@ export default class Orders {
   seller: string;
 
   @Column()
+  deliveryType: string;
+
+  @Column()
   clientEmail: string;
 
   @Column()
-  date: Date;
+  date: string;
 }

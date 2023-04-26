@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useWebsiteTitle from "../../../hooks/useWebisteTitle";
 import styles from "./OrderSetting.module.css";
 import axios from "axios";
@@ -8,13 +8,14 @@ import { api_url } from "../../../App";
 export default function OrderSetting() {
   useWebsiteTitle("Wybierz szczegóły dostawy");
   const location = useLocation();
+  const navigate = useNavigate();
   const [rabatCode, setRabatCode] = useState("");
   const [actualRabat, setActualRabat] = useState(0);
   const [priceProducts, setProductsPrice] = useState(0);
   const [priceWithoutDelivery, setPriceWithoutDelivery] = useState(0);
   const [orderData, setOrderData] = useState({
     deliveryType: null,
-    products: location.state.products,
+    useRabatCode: 0,
     price: 0,
     orderDetails: [window.localStorage.getItem("shoppingCard")],
     deliveryAdres: {
@@ -22,6 +23,7 @@ export default function OrderSetting() {
       name: "",
       lastName: "",
       phone: "",
+      adres: "",
     },
   });
 
@@ -66,8 +68,15 @@ export default function OrderSetting() {
       if (isNaN(res.data.message)) {
         console.log("Błąd");
       } else {
-        setProductsPrice(priceProducts * (res.data.message / 100));
+        setProductsPrice(
+          priceProducts - priceProducts * (res.data.message / 100)
+        );
         setActualRabat(res.data.message);
+        setOrderData({
+          ...orderData,
+          price: priceProducts - priceProducts * (res.data.message / 100),
+          useRabatCode: res.data.message,
+        });
       }
     });
   };
@@ -76,6 +85,12 @@ export default function OrderSetting() {
     e.preventDefault();
 
     console.log(orderData);
+    axios.post(`${api_url}/shopping/orderconfirm`, orderData).then((res) => {
+      if (res.data.message === "Wysłano") {
+        window.localStorage.removeItem("shoppingCard");
+        navigate("/");
+      }
+    });
   };
 
   useEffect(() => {
@@ -146,6 +161,20 @@ export default function OrderSetting() {
               });
             }}
           />
+          <input
+            type="text"
+            placeholder="adres"
+            name="adres"
+            onChange={(e) => {
+              setOrderData({
+                ...orderData,
+                deliveryAdres: {
+                  ...orderData.deliveryAdres,
+                  adres: e.target.value,
+                },
+              });
+            }}
+          />
         </div>
         <div className={`${styles.order_delivery_type}`}>
           <label>
@@ -181,9 +210,16 @@ export default function OrderSetting() {
             <span>Kod rabatowy</span>
             {actualRabat ? (
               <button
+                className={`${styles.delete_rabat_code_button}`}
                 onClick={(e) => {
                   e.preventDefault();
+                  setProductsPrice((100 * priceProducts) / (100 - actualRabat));
                   setActualRabat(0);
+                  setOrderData({
+                    ...orderData,
+                    useRabatCode: 0,
+                    price: (100 * priceProducts) / (100 - actualRabat),
+                  });
                 }}
               >
                 Usuń kod rabatowy
@@ -198,6 +234,7 @@ export default function OrderSetting() {
                   }}
                 />
                 <button
+                  className={`${styles.check_rabat_code_button}`}
                   onClick={(e) => {
                     checkRabatCode(e);
                   }}

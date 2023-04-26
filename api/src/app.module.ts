@@ -12,6 +12,7 @@ import ProductsType from './dtos/ProductsType.entity';
 import { AdminPanelModule } from './adminPanel/adminPanel.module';
 import Slider from './dtos/Slider.entity';
 import ProductsModule from './products/products.module';
+import { ShoppingModule } from './shopping/shopping.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import ProductsModule from './products/products.module';
     UsersPanelModule,
     AdminPanelModule,
     ProductsModule,
+    ShoppingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

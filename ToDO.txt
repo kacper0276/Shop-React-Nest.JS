@@ -1,6 +1,7 @@
 Zadania ToDo:
-- Koszyk 
-- Dodawanie do koszyka (next task)
+- Wysyłanie maili z statusem zamówienia (next task)
+- Nowy typ użytkownika (Pracownik) 
+- Panel pracownika
 - Finalizowanie
 - Aktualizacja statusu
 - Anulowanie zamówień
@@ -13,6 +14,7 @@ Przyszłe bajery:
 - Edycja aukcji (Włącznie ze zdjęciami)
 - Dodawanie kilku zdjęć do jednego produktu (forma slider)
 - Walidacja localStorage w shoppingCard
+- Poprawić wygląd pliku OrderSetting (Podział na mniejsze komponenty)
 
 Aktywne zadanie:
 - Wyświetlanie produktów, tworzenie w menu listy z typem produktów 
