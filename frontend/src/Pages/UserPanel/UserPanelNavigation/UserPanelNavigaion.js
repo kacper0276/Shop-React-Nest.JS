@@ -38,6 +38,16 @@ export default function UserPanelNavigation() {
           </li>
         </>
       ) : null}
+      {context.state.userStatus === "admin" ||
+      context.state.userStatus === "worker" ? (
+        <>
+          <li className={`${styles.navigation_element}`}>
+            <Link to={"/panelpracownika/zamowienia"}>
+              Zamówienia do spakowania
+            </Link>
+          </li>
+        </>
+      ) : null}
     </ul>
   );
 }

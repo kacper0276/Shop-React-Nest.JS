@@ -86,6 +86,7 @@ export default function SingleColumnEditUserData(props) {
           >
             <option value={"user"}>Użytkownik</option>
             <option value={"admin"}>Admin</option>
+            <option value={"worker"}>Pracownik</option>
           </select>
         </td>
         <td>

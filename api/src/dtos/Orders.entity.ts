@@ -28,4 +28,10 @@ export default class Orders {
 
   @Column()
   date: string;
+
+  @Column()
+  status: Boolean;
+
+  @Column()
+  startCompleted: Boolean;
 }

@@ -28,6 +28,8 @@ import EditUsersData from "./Pages/AdminPanel/EditUsersData/EditUsersData";
 import AddAuctionType from "./Pages/AdminPanel/AddAuctionType/AddAuctionType";
 import AddAuction from "./Pages/UserPanel/AddAuction/AddAuction";
 import EditSliderPhotos from "./Pages/AdminPanel/EditSliderPhotos/EditSliderPhotos";
+import AuthenticatedWorkerRoute from "./hoc/AuthenticatedWorkerRoute";
+import WorkerPanel from "./Pages/WorkerPanel/WorkerPanel";
 
 export const api_url = `http://localhost:3002/api`;
 
@@ -105,6 +107,17 @@ function App() {
             <AuthenticatedRoute>
               <UserAuction />
             </AuthenticatedRoute>
+          }
+        />
+
+        {/* Worker panel */}
+        <Route
+          path="/panelpracownika/zamowienia"
+          exact
+          element={
+            <AuthenticatedWorkerRoute>
+              <WorkerPanel />
+            </AuthenticatedWorkerRoute>
           }
         />
 
